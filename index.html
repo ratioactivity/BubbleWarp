@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BubbleWarp</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="links.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div id="loading-screen">
+    <img src="assets/loading.gif" alt="Loading..." class="loading-gif">
+  </div>
+
+  <main id="main-content" class="hidden">
+    <div id="logo">
+      <img src="assets/logo.gif" alt="BubbleWarp Logo">
+    </div>
+
+    <div id="button-container">
+      <img id="go-button" src="assets/go-button.png" alt="Go Button">
+    </div>
+
+    <div id="stats">
+      <span id="timer">Time wasted: 0s</span>
+      <span id="clicks">Bubbles burst: 0</span>
+    </div>
+
+    <button id="menu-toggle">⚙️</button>
+    <div id="menu" class="hidden">
+      <h2>Vibe Filters</h2>
+      <label><input type="checkbox" value="G" checked> Gaming</label>
+      <label><input type="checkbox" value="HV" checked> Heavy Visuals</label>
+      <label><input type="checkbox" value="HR" checked> Heavy Reading</label>
+      <label><input type="checkbox" value="A" checked> Ambient</label>
+      <label><input type="checkbox" value="E" checked> Exploration</label>
+      <label><input type="checkbox" value="ES" checked> Requires Sound</label>
+      <label><input type="checkbox" value="EF" checked> Requires Focus</label>
+      <label><input type="checkbox" value="KF" checked> Kinda Funny</label>
+    </div>
+
+    <div id="bubbles-container"></div>
+  </main>
+</body>
+</html>
