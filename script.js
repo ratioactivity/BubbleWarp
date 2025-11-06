@@ -85,9 +85,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (randomLink) {
       latestLink = randomLink;
-      const frame = linkFrame;
-      frame.src = randomLink;
-      frame.classList.add("active");
+      window.open(randomLink, "_blank");
       showFintasticPopup(randomLink);
     }
   });
@@ -99,7 +97,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ---- Idle bubbles ----
   setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
-    // ---- Finternet Favorites System ----
+
+  // ---- Finternet Favorites System ----
   const favoritesBtn = document.getElementById("favorites-button");
   const favoritesOverlay = document.getElementById("favorites-overlay");
   const favoritesList = document.getElementById("favorites-list");
@@ -178,13 +177,6 @@ window.addEventListener("DOMContentLoaded", () => {
       alert("Added to Finternet Favorites!");
     } else {
       alert("That link’s already in your Finternet Favorites!");
-    }
-  });
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-      linkFrame.classList.remove("active");
-      linkFrame.src = "";
     }
   });
 
