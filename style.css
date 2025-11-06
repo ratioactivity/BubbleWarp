@@ -16,6 +16,7 @@ body {
   overflow: hidden;
   background: linear-gradient(180deg, #a3e7ff, #6ec3ff);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -28,6 +29,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex: 1;
 }
 
 #logo {
@@ -41,11 +43,36 @@ body {
   transform: scale(1.05);
 }
 
+/* Bottom bar (footer) */
+#footer-bar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+}
+
 #stats {
-  margin-top: 20px;
-  text-align: center;
   font-family: "NTBrickSans";
-  color: #0b405b;
+  color: #063d5a;
+  font-size: 1.1em;
+}
+
+#footer-icon {
+  height: 45px;
+  width: auto;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+#footer-icon:hover {
+  transform: scale(1.1);
 }
 
 @keyframes float {
