@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener("DOMContentLoaded", () => {
   const logo = document.getElementById("logo");
   const bubblesContainer = document.getElementById("bubbles-container");
   const noItch = document.getElementById("no-itch");
@@ -77,11 +77,16 @@ window.onload = () => {
       spawnBubbles(bubblesContainer, 12);
     }
 
-    // open random link
-    let filtered = links;
-    if (noItch.checked) filtered = links.filter(l => !l.includes("itch.io"));
+    const filtered = noItch.checked
+      ? links.filter(l => !l.includes("itch.io"))
+      : links;
     const randomLink = filtered[Math.floor(Math.random() * filtered.length)];
-    if (randomLink) window.open(randomLink, "_blank");
+
+    if (randomLink) {
+      latestLink = randomLink;
+      window.open(randomLink, "_blank");
+      showFintasticPopup(randomLink);
+    }
   });
 
   // ---- Footer icon link ----
@@ -91,7 +96,8 @@ window.onload = () => {
 
   // ---- Idle bubbles ----
   setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
-    // ---- Finternet Favorites System ----
+
+  // ---- Finternet Favorites System ----
   const favoritesBtn = document.getElementById("favorites-button");
   const favoritesOverlay = document.getElementById("favorites-overlay");
   const favoritesList = document.getElementById("favorites-list");
@@ -142,17 +148,6 @@ window.onload = () => {
   // Store latest opened link
   let latestLink = null;
 
-  // Overwrite your link-opening section inside the logo click:
-  // Find this part inside logo.addEventListener:
-  // if (randomLink) window.open(randomLink, "_blank");
-  // Replace it with this ↓
-  // (this tracks latestLink & triggers popup)
-  const openLink = (link) => {
-    latestLink = link;
-    window.open(link, "_blank");
-    showFintasticPopup(link);
-  };
-
   // Function to show the "That link was fintastic!" popup
   function showFintasticPopup(latestUrl) {
     fintasticPopup.classList.add("show");
@@ -183,7 +178,9 @@ window.onload = () => {
       alert("That link’s already in your Finternet Favorites!");
     }
   });
-};
+
+  console.log("✅ script validated");
+});
 
 
 // ---- Bubble animation ----
