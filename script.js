@@ -102,4 +102,8 @@ function spawnBubbles(container, count, idle = false) {
   }
 }
 
-window.triggerWhaleEvent = triggerWhaleEvent;
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    triggerWhaleEvent();
+  }, 1000);
+});
