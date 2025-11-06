@@ -1,14 +1,14 @@
 @font-face {
   font-family: "Bigbesty";
-  src: url("assets/Bigbesty.ttf");
+  src: url("fonts/Bigbesty.ttf");
 }
 @font-face {
   font-family: "NTBrickSans";
-  src: url("assets/NTBrickSans.ttf");
+  src: url("fonts/NTBrickSans.ttf");
 }
 @font-face {
   font-family: "FiveFonts";
-  src: url("assets/FiveFonts-Regular.ttf");
+  src: url("fonts/FiveFonts-Regular.ttf");
 }
 
 body {
@@ -24,7 +24,6 @@ body {
   user-select: none;
 }
 
-/* Logo area */
 #logo-container {
   flex: 1;
   display: flex;
@@ -38,12 +37,9 @@ body {
   animation: float 4s ease-in-out infinite;
   transition: transform 0.2s ease;
 }
+#logo:hover { transform: scale(1.05); }
 
-#logo:hover {
-  transform: scale(1.05);
-}
-
-/* Footer bar */
+/* Footer Bar */
 #footer-bar {
   width: 100vw;
   position: fixed;
@@ -63,9 +59,7 @@ body {
   backdrop-filter: blur(5px);
 }
 
-#footer-left span {
-  margin-right: 15px;
-}
+#footer-left span { margin-right: 15px; }
 
 #footer-right {
   display: flex;
@@ -85,13 +79,10 @@ body {
   width: auto;
   border-radius: 8px;
   transition: transform 0.25s ease;
+  cursor: pointer;
 }
+#footer-icon:hover { transform: scale(1.1); }
 
-#footer-icon:hover {
-  transform: scale(1.1);
-}
-
-/* Bubbles */
 .bubble {
   position: absolute;
   bottom: -50px;
@@ -103,7 +94,6 @@ body {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-
 @keyframes rise {
   from { transform: translateY(0) scale(1); }
   to { transform: translateY(-120vh) scale(0.8); }
