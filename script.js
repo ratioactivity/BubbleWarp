@@ -25,20 +25,18 @@ window.onload = () => {
     localStorage.setItem("clicks", clicks);
     document.getElementById("clicks").textContent = `Bubbles burst: ${clicks}`;
 
-    // choose sound
+    // play bubble or whale sound
     const soundSrc = (clicks % 100 === 0)
       ? "assets/orca-sound.mp3"
       : bubbleSounds[Math.floor(Math.random() * bubbleSounds.length)];
     new Audio(soundSrc).play();
 
-    // bubble burst animation
+    // bubbles animation
     spawnBubbles(bubblesContainer, 12);
 
-    // open random link
-    setTimeout(() => {
-      const randomLink = links[Math.floor(Math.random() * links.length)];
-      window.open(randomLink, "_blank");
-    }, 1500);
+    // instantly open random link (no delay)
+    const randomLink = links[Math.floor(Math.random() * links.length)];
+    window.open(randomLink, "_blank");
   });
 
   // idle bubbles
@@ -49,7 +47,12 @@ window.onload = () => {
 function spawnBubbles(container, count, idle = false) {
   for (let i = 0; i < count; i++) {
     const bubble = document.createElement("img");
-    bubble.src = `assets/bubble${Math.ceil(Math.random() * 8)}.png`;
+    const n = Math.ceil(Math.random() * 8);
+
+    // fallback for missing bubble file
+    bubble.onerror = () => { bubble.remove(); };
+
+    bubble.src = `assets/bubble${n}.png`;
     bubble.className = "bubble";
     bubble.style.left = `${Math.random() * 100}%`;
     bubble.style.animationDuration = `${3 + Math.random() * 5}s`;
