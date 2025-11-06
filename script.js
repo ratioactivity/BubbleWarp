@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const footerIcon = document.getElementById("footer-icon");
   const soundToggle = document.getElementById("sound-toggle");
   const whaleOverlay = document.getElementById("whale-overlay");
+  const linkFrame = document.getElementById("link-frame");
 
   // ---- Timer ----
   let start = Date.now();
