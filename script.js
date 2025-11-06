@@ -93,6 +93,77 @@ window.onload = () => {
   setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
 };
 
+  // ---- Finternet Favorites System ----
+  const favoritesBtn = document.getElementById("favorites-button");
+  const favoritesOverlay = document.getElementById("favorites-overlay");
+  const favoritesList = document.getElementById("favorites-list");
+  const closeFavorites = document.getElementById("close-favorites");
+  const fintasticPopup = document.getElementById("fintastic-popup");
+
+  // Load favorites from localStorage
+  let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+  renderFavorites();
+
+  function renderFavorites() {
+    favoritesList.innerHTML = "";
+    if (favorites.length === 0) {
+      favoritesList.innerHTML = "<li>No favorites yet — go exploring!</li>";
+      return;
+    }
+    favorites.forEach(url => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = url;
+      a.textContent = url.replace("https://", "").replace("http://", "");
+      a.target = "_blank";
+      const remove = document.createElement("span");
+      remove.textContent = "✖";
+      remove.className = "remove-favorite";
+      remove.addEventListener("click", () => {
+        favorites = favorites.filter(f => f !== url);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        renderFavorites();
+      });
+      li.appendChild(a);
+      li.appendChild(remove);
+      favoritesList.appendChild(li);
+    });
+  }
+
+  favoritesBtn.addEventListener("click", () => {
+    favoritesOverlay.classList.add("active");
+  });
+
+  closeFavorites.addEventListener("click", () => {
+    favoritesOverlay.classList.remove("active");
+  });
+
+  // Function to show the "That link was fintastic!" popup
+  function showFintasticPopup(latestUrl) {
+    fintasticPopup.classList.add("show");
+    fintasticPopup.onclick = () => {
+      if (!favorites.includes(latestUrl)) {
+        favorites.push(latestUrl);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        renderFavorites();
+      }
+      fintasticPopup.classList.remove("show");
+    };
+
+    // Auto-hide after 6s
+    setTimeout(() => fintasticPopup.classList.remove("show"), 6000);
+  }
+
+  // Modify your existing link-opening section:
+  // (inside your logo click handler, where randomLink opens)
+  // Replace:
+  //   if (randomLink) window.open(randomLink, "_blank");
+  // with:
+  if (randomLink) {
+    window.open(randomLink, "_blank");
+    showFintasticPopup(randomLink);
+  }
+
 // ---- Bubble animation ----
 function spawnBubbles(container, count, idle = false) {
   for (let i = 0; i < count; i++) {
