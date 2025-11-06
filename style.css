@@ -20,16 +20,16 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: "FiveFonts";
+  font-family: "FiveFonts", sans-serif;
   user-select: none;
 }
 
+/* Logo area */
 #logo-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  flex: 1;
 }
 
 #logo {
@@ -43,48 +43,65 @@ body {
   transform: scale(1.05);
 }
 
-/* Bottom bar (footer) */
+/* Footer bar */
 #footer-bar {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.7);
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 65px;
+  background: rgba(255, 255, 255, 0.75);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
-  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
   box-sizing: border-box;
-  position: absolute;
-  bottom: 0;
+  padding: 0 25px;
+  font-family: "NTBrickSans", sans-serif;
+  font-size: 1.1em;
+  color: #05344d;
+  backdrop-filter: blur(5px);
 }
 
-#stats {
-  font-family: "NTBrickSans";
-  color: #063d5a;
-  font-size: 1.1em;
+#footer-left span {
+  margin-right: 15px;
+}
+
+#footer-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#filter-label {
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 #footer-icon {
-  height: 45px;
+  height: 50px;
   width: auto;
   border-radius: 8px;
-  transition: transform 0.2s;
+  transition: transform 0.25s ease;
 }
 
 #footer-icon:hover {
   transform: scale(1.1);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
+/* Bubbles */
 .bubble {
   position: absolute;
   bottom: -50px;
   opacity: 0.6;
   animation: rise linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes rise {
