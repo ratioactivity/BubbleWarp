@@ -1,14 +1,6 @@
 window.onload = () => {
-  const main = document.getElementById("main-content");
-  const loading = document.getElementById("loading-screen");
-  const goButton = document.getElementById("go-button");
+  const logo = document.getElementById("logo");
   const bubblesContainer = document.getElementById("bubbles-container");
-
-  // loading screen delay
-  setTimeout(() => {
-    loading.classList.add("hidden");
-    main.classList.remove("hidden");
-  }, 1500);
 
   // time counter
   let start = Date.now();
@@ -28,8 +20,7 @@ window.onload = () => {
     "assets/bubblesound7.mp3", "assets/bubblesound8.mp3"
   ];
 
-  goButton.addEventListener("click", () => {
-    goButton.style.pointerEvents = "none";
+  logo.addEventListener("click", () => {
     clicks++;
     localStorage.setItem("clicks", clicks);
     document.getElementById("clicks").textContent = `Bubbles burst: ${clicks}`;
@@ -40,24 +31,21 @@ window.onload = () => {
       : bubbleSounds[Math.floor(Math.random() * bubbleSounds.length)];
     new Audio(soundSrc).play();
 
-    // button animation
-    goButton.src = "assets/go-animation.gif";
+    // bubble burst animation
     spawnBubbles(bubblesContainer, 12);
 
-    // after animation → open link
+    // open random link
     setTimeout(() => {
       const randomLink = links[Math.floor(Math.random() * links.length)];
       window.open(randomLink, "_blank");
-      goButton.src = "assets/go-button.png";
-      goButton.style.pointerEvents = "auto";
-    }, 1600);
+    }, 1500);
   });
 
-  // idle bubble spawns
+  // idle bubbles
   setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
 };
 
-// bubble creation
+// bubble generator
 function spawnBubbles(container, count, idle = false) {
   for (let i = 0; i < count; i++) {
     const bubble = document.createElement("img");
