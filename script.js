@@ -101,3 +101,5 @@ function spawnBubbles(container, count, idle = false) {
     setTimeout(() => bubble.remove(), 8000);
   }
 }
+
+window.triggerWhaleEvent = triggerWhaleEvent;
