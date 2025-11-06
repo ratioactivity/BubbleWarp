@@ -68,8 +68,7 @@ function spawnBubbles(container, count, idle = false) {
   for (let i = 0; i < count; i++) {
     const bubble = document.createElement("img");
     const n = Math.ceil(Math.random() * 7);
-    bubble.src = `bubble${n}.png`; // assume in same folder or adjust if under assets
-    bubble.className = "bubble";
+    bubble.src = `assets/bubble${n}.png`;    bubble.className = "bubble";
     bubble.style.left = `${Math.random() * 100}%`;
     bubble.style.animationDuration = `${3 + Math.random() * 5}s`;
     bubble.style.width = `${10 + Math.random() * 30}px`;
