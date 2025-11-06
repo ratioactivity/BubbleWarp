@@ -201,6 +201,23 @@ body {
   cursor: pointer;
 }
 
+#favorites-button {
+  font-family: "NTBrickSans", sans-serif;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.95em;
+  color: #05344d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#favorites-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
 /* ===== Fintastic Popup ===== */
 #fintastic-popup {
   position: fixed;
