@@ -23,23 +23,22 @@ body {
   user-select: none;
 }
 
-.hidden {
-  display: none;
+#logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-#logo img {
+#logo {
   width: 300px;
-  animation: float 4s ease-in-out infinite;
-}
-
-#go-button {
-  width: 160px;
   cursor: pointer;
-  transition: transform 0.2s;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.2s ease;
 }
 
-#go-button:hover {
-  transform: scale(1.1);
+#logo:hover {
+  transform: scale(1.05);
 }
 
 #stats {
@@ -54,7 +53,6 @@ body {
   50% { transform: translateY(-10px); }
 }
 
-/* Idle bubbles floating in background */
 .bubble {
   position: absolute;
   bottom: -50px;
