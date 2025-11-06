@@ -91,14 +91,13 @@ window.onload = () => {
 
   // ---- Idle bubbles ----
   setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
-};
-
-  // ---- Finternet Favorites System ----
+    // ---- Finternet Favorites System ----
   const favoritesBtn = document.getElementById("favorites-button");
   const favoritesOverlay = document.getElementById("favorites-overlay");
   const favoritesList = document.getElementById("favorites-list");
   const closeFavorites = document.getElementById("close-favorites");
   const fintasticPopup = document.getElementById("fintastic-popup");
+  const addFavBtn = document.getElementById("add-favorite-button");
 
   // Load favorites from localStorage
   let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -116,6 +115,7 @@ window.onload = () => {
       a.href = url;
       a.textContent = url.replace("https://", "").replace("http://", "");
       a.target = "_blank";
+
       const remove = document.createElement("span");
       remove.textContent = "✖";
       remove.className = "remove-favorite";
@@ -124,6 +124,7 @@ window.onload = () => {
         localStorage.setItem("favorites", JSON.stringify(favorites));
         renderFavorites();
       });
+
       li.appendChild(a);
       li.appendChild(remove);
       favoritesList.appendChild(li);
@@ -138,6 +139,20 @@ window.onload = () => {
     favoritesOverlay.classList.remove("active");
   });
 
+  // Store latest opened link
+  let latestLink = null;
+
+  // Overwrite your link-opening section inside the logo click:
+  // Find this part inside logo.addEventListener:
+  // if (randomLink) window.open(randomLink, "_blank");
+  // Replace it with this ↓
+  // (this tracks latestLink & triggers popup)
+  const openLink = (link) => {
+    latestLink = link;
+    window.open(link, "_blank");
+    showFintasticPopup(link);
+  };
+
   // Function to show the "That link was fintastic!" popup
   function showFintasticPopup(latestUrl) {
     fintasticPopup.classList.add("show");
@@ -150,32 +165,10 @@ window.onload = () => {
       fintasticPopup.classList.remove("show");
     };
 
-    // Auto-hide after 6s
     setTimeout(() => fintasticPopup.classList.remove("show"), 6000);
   }
 
-  // Modify your existing link-opening section:
-  // (inside your logo click handler, where randomLink opens)
-  // Replace:
-  //   if (randomLink) window.open(randomLink, "_blank");
-  // with:
-  if (randomLink) {
-    window.open(randomLink, "_blank");
-    showFintasticPopup(randomLink);
-  }
-
-  const addFavBtn = document.getElementById("add-favorite-button");
-  let latestLink = null; // track the most recent opened link
-
-  // Modify your link-opening logic:
-  // Instead of directly opening randomLink, track it:
-  if (randomLink) {
-    latestLink = randomLink;
-    window.open(randomLink, "_blank");
-    showFintasticPopup(randomLink);
-  }
-
-  // Handle manual add button
+  // Add manual add button handler
   addFavBtn.addEventListener("click", () => {
     if (!latestLink) {
       alert("You haven't opened any links yet!");
@@ -190,6 +183,8 @@ window.onload = () => {
       alert("That link’s already in your Finternet Favorites!");
     }
   });
+};
+
 
 // ---- Bubble animation ----
 function spawnBubbles(container, count, idle = false) {
