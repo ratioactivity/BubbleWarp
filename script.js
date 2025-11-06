@@ -1,10 +1,18 @@
-window.onload = () => {
+window.addEventListener("DOMContentLoaded", () => {
   const logo = document.getElementById("logo");
   const bubblesContainer = document.getElementById("bubbles-container");
   const noItch = document.getElementById("no-itch");
   const footerIcon = document.getElementById("footer-icon");
   const soundToggle = document.getElementById("sound-toggle");
   const whaleOverlay = document.getElementById("whale-overlay");
+  const favoritesBtn = document.getElementById("favorites-button");
+  const favoritesOverlay = document.getElementById("favorites-overlay");
+  const favoritesList = document.getElementById("favorites-list");
+  const closeFavorites = document.getElementById("close-favorites");
+  const addFavBtn = document.getElementById("add-favorite-button");
+  const defaultFavBtnLabel = addFavBtn.textContent;
+  let favBtnResetTimer = null;
+  let latestLink = null;
 
   // ---- Timer ----
   let start = Date.now();
@@ -77,11 +85,21 @@ window.onload = () => {
       spawnBubbles(bubblesContainer, 12);
     }
 
-    // open random link
-    let filtered = links;
-    if (noItch.checked) filtered = links.filter(l => !l.includes("itch.io"));
+    const filtered = noItch.checked
+      ? links.filter(l => !l.includes("itch.io"))
+      : links;
     const randomLink = filtered[Math.floor(Math.random() * filtered.length)];
-    if (randomLink) window.open(randomLink, "_blank");
+
+    if (randomLink) {
+      latestLink = randomLink;
+      addFavBtn.textContent = defaultFavBtnLabel;
+      addFavBtn.classList.remove("saved", "duplicate");
+      if (favBtnResetTimer) {
+        clearTimeout(favBtnResetTimer);
+        favBtnResetTimer = null;
+      }
+      window.open(randomLink, "_blank");
+    }
   });
 
   // ---- Footer icon link ----
@@ -91,13 +109,8 @@ window.onload = () => {
 
   // ---- Idle bubbles ----
   setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
-    // ---- Finternet Favorites System ----
-  const favoritesBtn = document.getElementById("favorites-button");
-  const favoritesOverlay = document.getElementById("favorites-overlay");
-  const favoritesList = document.getElementById("favorites-list");
-  const closeFavorites = document.getElementById("close-favorites");
-  const fintasticPopup = document.getElementById("fintastic-popup");
-  const addFavBtn = document.getElementById("add-favorite-button");
+
+  // ---- Finternet Favorites System ----
 
   // Load favorites from localStorage
   let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -139,51 +152,44 @@ window.onload = () => {
     favoritesOverlay.classList.remove("active");
   });
 
-  // Store latest opened link
-  let latestLink = null;
-
-  // Overwrite your link-opening section inside the logo click:
-  // Find this part inside logo.addEventListener:
-  // if (randomLink) window.open(randomLink, "_blank");
-  // Replace it with this ↓
-  // (this tracks latestLink & triggers popup)
-  const openLink = (link) => {
-    latestLink = link;
-    window.open(link, "_blank");
-    showFintasticPopup(link);
-  };
-
-  // Function to show the "That link was fintastic!" popup
-  function showFintasticPopup(latestUrl) {
-    fintasticPopup.classList.add("show");
-    fintasticPopup.onclick = () => {
-      if (!favorites.includes(latestUrl)) {
-        favorites.push(latestUrl);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        renderFavorites();
-      }
-      fintasticPopup.classList.remove("show");
-    };
-
-    setTimeout(() => fintasticPopup.classList.remove("show"), 6000);
-  }
-
   // Add manual add button handler
   addFavBtn.addEventListener("click", () => {
     if (!latestLink) {
-      alert("You haven't opened any links yet!");
+      addFavBtn.textContent = "Open a link first";
+      addFavBtn.classList.remove("saved");
+      addFavBtn.classList.add("duplicate");
+      if (favBtnResetTimer) clearTimeout(favBtnResetTimer);
+      favBtnResetTimer = setTimeout(() => {
+        addFavBtn.textContent = defaultFavBtnLabel;
+        addFavBtn.classList.remove("duplicate");
+        favBtnResetTimer = null;
+      }, 2200);
       return;
     }
+
     if (!favorites.includes(latestLink)) {
       favorites.push(latestLink);
       localStorage.setItem("favorites", JSON.stringify(favorites));
       renderFavorites();
-      alert("Added to Finternet Favorites!");
+      addFavBtn.textContent = "⭐ Saved to favorites!";
+      addFavBtn.classList.remove("duplicate");
+      addFavBtn.classList.add("saved");
     } else {
-      alert("That link’s already in your Finternet Favorites!");
+      addFavBtn.textContent = "Already in favorites";
+      addFavBtn.classList.remove("saved");
+      addFavBtn.classList.add("duplicate");
     }
+
+    if (favBtnResetTimer) clearTimeout(favBtnResetTimer);
+    favBtnResetTimer = setTimeout(() => {
+      addFavBtn.textContent = defaultFavBtnLabel;
+      addFavBtn.classList.remove("saved", "duplicate");
+      favBtnResetTimer = null;
+    }, 2200);
   });
-};
+
+  console.log("✅ script validated");
+});
 
 
 // ---- Bubble animation ----
