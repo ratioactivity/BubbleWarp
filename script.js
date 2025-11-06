@@ -49,19 +49,25 @@ window.onload = () => {
 
     // flood the screen with bubbles
     spawnBubbles(bubblesContainer, 60);
-    document.body.style.background = "linear-gradient(180deg, #001a33, #00101f)";
+    document.body.style.background =
+      "linear-gradient(180deg, #001a33, #00101f)";
 
     setTimeout(() => {
       whaleOverlay.classList.remove("active");
-      document.body.style.background = "linear-gradient(180deg, #a3e7ff, #6ec3ff)";
+      document.body.style.background =
+        "linear-gradient(180deg, #a3e7ff, #6ec3ff)";
     }, 4000);
   }
+
+  // EXPOSE for console testing
+  window.triggerWhaleEvent = triggerWhaleEvent;
 
   // ---- Main click ----
   logo.addEventListener("click", () => {
     clicks++;
     localStorage.setItem("clicks", clicks);
-    document.getElementById("clicks").textContent = `Bubbles burst: ${clicks}`;
+    document.getElementById("clicks").textContent =
+      `Bubbles burst: ${clicks}`;
 
     if (clicks % 100 === 0) {
       triggerWhaleEvent();
@@ -101,5 +107,3 @@ function spawnBubbles(container, count, idle = false) {
     setTimeout(() => bubble.remove(), 8000);
   }
 }
-
-window.triggerWhaleEvent = triggerWhaleEvent;
