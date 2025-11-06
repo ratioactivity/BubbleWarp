@@ -164,6 +164,33 @@ window.onload = () => {
     showFintasticPopup(randomLink);
   }
 
+  const addFavBtn = document.getElementById("add-favorite-button");
+  let latestLink = null; // track the most recent opened link
+
+  // Modify your link-opening logic:
+  // Instead of directly opening randomLink, track it:
+  if (randomLink) {
+    latestLink = randomLink;
+    window.open(randomLink, "_blank");
+    showFintasticPopup(randomLink);
+  }
+
+  // Handle manual add button
+  addFavBtn.addEventListener("click", () => {
+    if (!latestLink) {
+      alert("You haven't opened any links yet!");
+      return;
+    }
+    if (!favorites.includes(latestLink)) {
+      favorites.push(latestLink);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      renderFavorites();
+      alert("Added to Finternet Favorites!");
+    } else {
+      alert("That link’s already in your Finternet Favorites!");
+    }
+  });
+
 // ---- Bubble animation ----
 function spawnBubbles(container, count, idle = false) {
   for (let i = 0; i < count; i++) {
