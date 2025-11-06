@@ -2,81 +2,73 @@ window.onload = () => {
   const logo = document.getElementById("logo");
   const bubblesContainer = document.getElementById("bubbles-container");
   const noItch = document.getElementById("no-itch");
+  const footerIcon = document.getElementById("footer-icon");
 
-  // --- Timers ---
+  // ---- Timer ----
   let start = Date.now();
   setInterval(() => {
     const elapsed = Math.floor((Date.now() - start) / 1000);
     document.getElementById("timer").textContent = `Time wasted: ${elapsed}s`;
   }, 1000);
 
-  // --- Click Counter ---
+  // ---- Click counter ----
   let clicks = parseInt(localStorage.getItem("clicks")) || 0;
   document.getElementById("clicks").textContent = `Bubbles burst: ${clicks}`;
 
-  // --- Sounds ---
-  const bubbleSounds = [
-    "assets/bubblesound1.mp3", "assets/bubblesound2.mp3",
-    "assets/bubblesound3.mp3", "assets/bubblesound4.mp3",
-    "assets/bubblesound5.mp3", "assets/bubblesound6.mp3",
-    "assets/bubblesound7.mp3"
+  // ---- Audio Setup ----
+  const sounds = [
+    "sounds/bubblesound1.mp3", "sounds/bubblesound2.mp3",
+    "sounds/bubblesound3.mp3", "sounds/bubblesound4.mp3",
+    "sounds/bubblesound5.mp3", "sounds/bubblesound6.mp3",
+    "sounds/bubblesound7.mp3", "sounds/bubblesound8.mp3"
   ];
 
-  // preload sounds to beat autoplay rules
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  const playSound = async (path) => {
-    try {
-      const res = await fetch(path);
-      const buf = await res.arrayBuffer();
-      const audioBuf = await audioContext.decodeAudioData(buf);
-      const source = audioContext.createBufferSource();
-      source.buffer = audioBuf;
-      source.connect(audioContext.destination);
-      source.start(0);
-    } catch (e) {
-      console.warn("sound error:", e);
-    }
-  };
+  const whaleSound = "sounds/whalesounds.mp3";
 
-  // --- Click handler ---
+  // Reusable HTMLAudioElement version for browser compatibility
+  function playSound(file) {
+    const audio = new Audio(file);
+    audio.volume = 0.8;
+    audio.play().catch((err) => console.warn("Audio blocked until user interaction:", err));
+  }
+
+  // ---- Main click ----
   logo.addEventListener("click", () => {
-    // resume context if user interacted
-    if (audioContext.state === "suspended") audioContext.resume();
-
     clicks++;
     localStorage.setItem("clicks", clicks);
     document.getElementById("clicks").textContent = `Bubbles burst: ${clicks}`;
 
-    // pick link
-    let filtered = links;
-    if (noItch.checked) {
-      filtered = links.filter(l => !l.includes("itch.io"));
-    }
-
-    // play appropriate sound
-    const soundSrc = (clicks % 100 === 0)
-      ? "assets/orca-sound.mp3"
-      : bubbleSounds[Math.floor(Math.random() * bubbleSounds.length)];
+    // pick and play sound
+    const soundSrc = (clicks % 100 === 0) ? whaleSound :
+      sounds[Math.floor(Math.random() * sounds.length)];
     playSound(soundSrc);
 
     // bubbles
     spawnBubbles(bubblesContainer, 12);
 
-    // open random link
+    // open link (filter if checkbox checked)
+    let filtered = links;
+    if (noItch.checked) filtered = links.filter(l => !l.includes("itch.io"));
+
     const randomLink = filtered[Math.floor(Math.random() * filtered.length)];
     if (randomLink) window.open(randomLink, "_blank");
   });
 
-  // idle bubbles
+  // ---- Footer icon link ----
+  footerIcon.addEventListener("click", () => {
+    window.open("https://github.com/ratioactivity", "_blank");
+  });
+
+  // ---- Idle bubbles ----
   setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
 };
 
-// --- Bubble generator ---
+// ---- Bubble animation ----
 function spawnBubbles(container, count, idle = false) {
   for (let i = 0; i < count; i++) {
     const bubble = document.createElement("img");
-    const n = Math.ceil(Math.random() * 7); // only 1–7
-    bubble.src = `assets/bubble${n}.png`;
+    const n = Math.ceil(Math.random() * 7);
+    bubble.src = `bubble${n}.png`; // assume in same folder or adjust if under assets
     bubble.className = "bubble";
     bubble.style.left = `${Math.random() * 100}%`;
     bubble.style.animationDuration = `${3 + Math.random() * 5}s`;
