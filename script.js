@@ -1,10 +1,11 @@
-window.onload = () => {
+window.addEventListener("DOMContentLoaded", () => {
   const logo = document.getElementById("logo");
   const bubblesContainer = document.getElementById("bubbles-container");
   const noItch = document.getElementById("no-itch");
   const footerIcon = document.getElementById("footer-icon");
   const soundToggle = document.getElementById("sound-toggle");
   const whaleOverlay = document.getElementById("whale-overlay");
+  const linkFrame = document.getElementById("link-frame");
 
   // ---- Timer ----
   let start = Date.now();
@@ -77,11 +78,18 @@ window.onload = () => {
       spawnBubbles(bubblesContainer, 12);
     }
 
-    // open random link
-    let filtered = links;
-    if (noItch.checked) filtered = links.filter(l => !l.includes("itch.io"));
+    const filtered = noItch.checked
+      ? links.filter(l => !l.includes("itch.io"))
+      : links;
     const randomLink = filtered[Math.floor(Math.random() * filtered.length)];
-    if (randomLink) window.open(randomLink, "_blank");
+
+    if (randomLink) {
+      latestLink = randomLink;
+      const frame = linkFrame;
+      frame.src = randomLink;
+      frame.classList.add("active");
+      showFintasticPopup(randomLink);
+    }
   });
 
   // ---- Footer icon link ----
@@ -142,17 +150,6 @@ window.onload = () => {
   // Store latest opened link
   let latestLink = null;
 
-  // Overwrite your link-opening section inside the logo click:
-  // Find this part inside logo.addEventListener:
-  // if (randomLink) window.open(randomLink, "_blank");
-  // Replace it with this ↓
-  // (this tracks latestLink & triggers popup)
-  const openLink = (link) => {
-    latestLink = link;
-    window.open(link, "_blank");
-    showFintasticPopup(link);
-  };
-
   // Function to show the "That link was fintastic!" popup
   function showFintasticPopup(latestUrl) {
     fintasticPopup.classList.add("show");
@@ -183,7 +180,16 @@ window.onload = () => {
       alert("That link’s already in your Finternet Favorites!");
     }
   });
-};
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      linkFrame.classList.remove("active");
+      linkFrame.src = "";
+    }
+  });
+
+  console.log("✅ script validated");
+});
 
 
 // ---- Bubble animation ----

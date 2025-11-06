@@ -256,3 +256,19 @@ body {
   background: rgba(255, 255, 255, 0.9);
   transform: scale(1.05);
 }
+
+#link-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  display: none;
+  z-index: 900;
+  background: #fff;
+}
+
+#link-frame.active {
+  display: block;
+}
