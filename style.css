@@ -36,6 +36,8 @@ body {
   cursor: pointer;
   animation: float 4s ease-in-out infinite;
   transition: transform 0.2s ease;
+  border-radius: 50%;
+  box-shadow: 0 18px 45px rgba(0, 64, 112, 0.35);
 }
 #logo:hover { transform: scale(1.05); }
 
@@ -218,28 +220,6 @@ body {
   transform: scale(1.05);
 }
 
-/* ===== Fintastic Popup ===== */
-#fintastic-popup {
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255,255,255,0.9);
-  padding: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  display: none;
-  font-family: "NTBrickSans", sans-serif;
-  color: #05344d;
-  z-index: 1500;
-  cursor: pointer;
-  transition: opacity 0.5s ease;
-}
-#fintastic-popup.show {
-  display: block;
-  opacity: 1;
-}
-
 #add-favorite-button {
   font-family: "NTBrickSans", sans-serif;
   background: rgba(255, 255, 255, 0.7);
@@ -255,5 +235,17 @@ body {
 #add-favorite-button:hover {
   background: rgba(255, 255, 255, 0.9);
   transform: scale(1.05);
+}
+
+#add-favorite-button.saved {
+  background: rgba(83, 197, 118, 0.85);
+  border-color: rgba(83, 197, 118, 0.9);
+  color: #ffffff;
+}
+
+#add-favorite-button.duplicate {
+  background: rgba(255, 170, 68, 0.85);
+  border-color: rgba(255, 170, 68, 0.9);
+  color: #05344d;
 }
 

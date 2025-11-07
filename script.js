@@ -5,7 +5,14 @@ window.addEventListener("DOMContentLoaded", () => {
   const footerIcon = document.getElementById("footer-icon");
   const soundToggle = document.getElementById("sound-toggle");
   const whaleOverlay = document.getElementById("whale-overlay");
-  const linkFrame = document.getElementById("link-frame");
+  const favoritesBtn = document.getElementById("favorites-button");
+  const favoritesOverlay = document.getElementById("favorites-overlay");
+  const favoritesList = document.getElementById("favorites-list");
+  const closeFavorites = document.getElementById("close-favorites");
+  const addFavBtn = document.getElementById("add-favorite-button");
+  const defaultFavBtnLabel = addFavBtn.textContent;
+  let favBtnResetTimer = null;
+  let latestLink = null;
 
   // ---- Timer ----
   let start = Date.now();
@@ -85,8 +92,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (randomLink) {
       latestLink = randomLink;
+      addFavBtn.textContent = defaultFavBtnLabel;
+      addFavBtn.classList.remove("saved", "duplicate");
+      if (favBtnResetTimer) {
+        clearTimeout(favBtnResetTimer);
+        favBtnResetTimer = null;
+      }
       window.open(randomLink, "_blank");
-      showFintasticPopup(randomLink);
     }
   });
 
@@ -99,12 +111,6 @@ window.addEventListener("DOMContentLoaded", () => {
   setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
 
   // ---- Finternet Favorites System ----
-  const favoritesBtn = document.getElementById("favorites-button");
-  const favoritesOverlay = document.getElementById("favorites-overlay");
-  const favoritesList = document.getElementById("favorites-list");
-  const closeFavorites = document.getElementById("close-favorites");
-  const fintasticPopup = document.getElementById("fintastic-popup");
-  const addFavBtn = document.getElementById("add-favorite-button");
 
   // Load favorites from localStorage
   let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -146,38 +152,40 @@ window.addEventListener("DOMContentLoaded", () => {
     favoritesOverlay.classList.remove("active");
   });
 
-  // Store latest opened link
-  let latestLink = null;
-
-  // Function to show the "That link was fintastic!" popup
-  function showFintasticPopup(latestUrl) {
-    fintasticPopup.classList.add("show");
-    fintasticPopup.onclick = () => {
-      if (!favorites.includes(latestUrl)) {
-        favorites.push(latestUrl);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        renderFavorites();
-      }
-      fintasticPopup.classList.remove("show");
-    };
-
-    setTimeout(() => fintasticPopup.classList.remove("show"), 6000);
-  }
-
   // Add manual add button handler
   addFavBtn.addEventListener("click", () => {
     if (!latestLink) {
-      alert("You haven't opened any links yet!");
+      addFavBtn.textContent = "Open a link first";
+      addFavBtn.classList.remove("saved");
+      addFavBtn.classList.add("duplicate");
+      if (favBtnResetTimer) clearTimeout(favBtnResetTimer);
+      favBtnResetTimer = setTimeout(() => {
+        addFavBtn.textContent = defaultFavBtnLabel;
+        addFavBtn.classList.remove("duplicate");
+        favBtnResetTimer = null;
+      }, 2200);
       return;
     }
+
     if (!favorites.includes(latestLink)) {
       favorites.push(latestLink);
       localStorage.setItem("favorites", JSON.stringify(favorites));
       renderFavorites();
-      alert("Added to Finternet Favorites!");
+      addFavBtn.textContent = "⭐ Saved to favorites!";
+      addFavBtn.classList.remove("duplicate");
+      addFavBtn.classList.add("saved");
     } else {
-      alert("That link’s already in your Finternet Favorites!");
+      addFavBtn.textContent = "Already in favorites";
+      addFavBtn.classList.remove("saved");
+      addFavBtn.classList.add("duplicate");
     }
+
+    if (favBtnResetTimer) clearTimeout(favBtnResetTimer);
+    favBtnResetTimer = setTimeout(() => {
+      addFavBtn.textContent = defaultFavBtnLabel;
+      addFavBtn.classList.remove("saved", "duplicate");
+      favBtnResetTimer = null;
+    }, 2200);
   });
 
   console.log("✅ script validated");
