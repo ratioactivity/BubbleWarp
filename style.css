@@ -30,6 +30,10 @@ body.deep-dive {
   color: #d0f4ff;
 }
 
+body.deep-dive #logo {
+  filter: drop-shadow(0 0 12px #00b4d8);
+}
+
 #logo-container {
   flex: 1;
   display: flex;
