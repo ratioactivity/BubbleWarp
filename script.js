@@ -188,6 +188,61 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 2200);
   });
 
+  // ---- Deep Dive Mode ----
+  const deepDiveToggle = document.getElementById("deepdive-toggle");
+  const deepDiveOverlay = document.getElementById("deepdive-overlay");
+  const deepDiveList = document.getElementById("deepdive-list");
+
+  const topics = [
+    "Uranium glass history",
+    "Radium girls",
+    "Chernobyl wildlife",
+    "Deep sea vents",
+    "Ancient shipwrecks",
+    "Cosmic radiation",
+    "Dark matter theories",
+    "Cave diving disasters",
+    "Undersea volcanoes",
+    "Titanium metallurgy"
+  ];
+
+  let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+  deepDiveToggle.checked = deepDiveMode;
+  if (deepDiveMode) activateDeepDive(true);
+
+  deepDiveToggle.addEventListener("change", () => {
+    deepDiveMode = deepDiveToggle.checked;
+    localStorage.setItem("deepDiveMode", deepDiveMode);
+    activateDeepDive(deepDiveMode);
+  });
+
+  function activateDeepDive(on) {
+    if (on) {
+      document.body.classList.add("deep-dive");
+      deepDiveOverlay.classList.add("active");
+      renderDeepDive();
+    } else {
+      document.body.classList.remove("deep-dive");
+      deepDiveOverlay.classList.remove("active");
+    }
+  }
+
+  function renderDeepDive() {
+    deepDiveList.innerHTML = "";
+    topics.forEach(topic => {
+      const li = document.createElement("li");
+      li.textContent = topic;
+      const btn = document.createElement("button");
+      btn.textContent = "Search";
+      btn.addEventListener("click", () => {
+        const q = encodeURIComponent(topic);
+        window.open(`https://www.google.com/search?q=${q}`, "_blank");
+      });
+      li.appendChild(btn);
+      deepDiveList.appendChild(li);
+    });
+  }
+
   console.log("✅ script validated");
 });
 
