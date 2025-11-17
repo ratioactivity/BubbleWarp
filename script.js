@@ -197,7 +197,7 @@ window.addEventListener("DOMContentLoaded", () => {
     
   const topics = [
     "Uranium glass history",
-    "Titanium metallurgy"
+    "Titanium metallurgy",
     "Historical apothecary practices",
     "Radium Girls",
     "Salem Witch Trials",
