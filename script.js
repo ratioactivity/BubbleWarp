@@ -32,12 +32,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ---- Sound preference ----
   let soundEnabled = JSON.parse(localStorage.getItem("soundEnabled") || "true");
-  soundToggle.checked = soundEnabled;
+  if (soundToggle) {
+    soundToggle.checked = soundEnabled;
 
-  soundToggle.addEventListener("change", () => {
-    soundEnabled = soundToggle.checked;
-    localStorage.setItem("soundEnabled", soundEnabled);
-  });
+    soundToggle.addEventListener("change", () => {
+      soundEnabled = soundToggle.checked;
+      localStorage.setItem("soundEnabled", soundEnabled);
+    });
+  }
 
   // ---- Audio setup ----
   const sounds = [
@@ -109,7 +111,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ---- Footer icon link ----
   footerIcon?.addEventListener("click", () => {
-    window.open("https://github.com/ratioactivity", "_blank");
+    window.open("https://github.com/ratioactivity/BubbleWarp", "_blank");
   });
 
   // ---- Idle bubbles ----
