@@ -55,12 +55,12 @@ body.deep-dive #logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: auto;
-  height: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 #logo {
-  width: 90px;
+  width: 300px;
   height: auto;
   cursor: pointer;
   animation: float 4s ease-in-out infinite;
@@ -69,6 +69,18 @@ body.deep-dive #logo {
   box-shadow: 0 18px 45px rgba(0, 64, 112, 0.35);
 }
 #logo:hover { transform: scale(1.05); }
+
+#footer-logo {
+  width: 90px;
+  height: auto;
+  margin-left: auto;
+  cursor: pointer;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.2s ease;
+  border-radius: 50%;
+  box-shadow: 0 12px 28px rgba(0, 64, 112, 0.28);
+}
+#footer-logo:hover { transform: scale(1.05); }
 
 /* Footer Bar */
 #footer-bar {
