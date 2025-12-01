@@ -323,3 +323,122 @@ body.deep-dive #logo {
   color: #05344d;
 }
 
+/* ===== Tasks Overlay ===== */
+#start-task-button {
+  font-family: "NTBrickSans", sans-serif;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.95em;
+  color: #05344d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#start-task-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
+#tasks-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 34, 68, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 2100;
+  color: #063d5a;
+  font-family: "NTBrickSans", sans-serif;
+}
+
+#tasks-overlay.active {
+  display: flex;
+}
+
+#tasks-overlay-content {
+  background: rgba(255, 255, 255, 0.96);
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  width: 82%;
+  max-width: 640px;
+  max-height: 75vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tasks-subtitle {
+  margin: 0;
+  color: #0b405b;
+  opacity: 0.8;
+}
+
+#tasks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(0, 64, 112, 0.06);
+  border: 1px solid rgba(0, 64, 112, 0.12);
+}
+
+.task-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-text p {
+  margin: 0;
+  color: #0b405b;
+  opacity: 0.85;
+}
+
+.view-task-button {
+  background: #0b405b;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "NTBrickSans", sans-serif;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.view-task-button:hover {
+  background: #0d5276;
+  transform: translateY(-1px);
+}
+
+#close-tasks {
+  align-self: flex-end;
+  background: #0b405b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "NTBrickSans", sans-serif;
+  transition: background 0.2s ease;
+}
+
+#close-tasks:hover {
+  background: #0d5276;
+}
+

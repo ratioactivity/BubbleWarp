@@ -11,8 +11,34 @@ window.addEventListener("DOMContentLoaded", () => {
   const closeFavorites = document.getElementById("close-favorites");
   const addFavBtn = document.getElementById("add-favorite-button");
   const defaultFavBtnLabel = addFavBtn.textContent;
+  const startTaskBtn = document.getElementById("start-task-button");
+  const tasksOverlay = document.getElementById("tasks-overlay");
+  const tasksList = document.getElementById("tasks-list");
+  const closeTasksBtn = document.getElementById("close-tasks");
   let favBtnResetTimer = null;
   let latestLink = null;
+
+  // ---- Task definitions ----
+  const taskDefinitions = [
+    {
+      id: "bubble-moodboard",
+      title: "Design a bubble moodboard",
+      description: "Collect visuals and palettes for a bubbly landing page.",
+      viewUrl: "https://www.pinterest.com/search/pins/?q=bubble%20aesthetic"
+    },
+    {
+      id: "ocean-links",
+      title: "Curate ocean inspo links",
+      description: "Gather calming ocean reads to stash in favorites.",
+      viewUrl: "https://www.google.com/search?q=ocean+inspiration+articles"
+    },
+    {
+      id: "whale-facts",
+      title: "Fact-check whale trivia",
+      description: "Verify a handful of whale facts for the deep dive mode.",
+      viewUrl: "https://en.wikipedia.org/wiki/Whale"
+    }
+  ];
 
   // ---- Timer ----
   let start = Date.now();
@@ -658,6 +684,63 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   } else {
     console.warn("Deep Dive UI not found; skipping feature initialization.");
+  }
+
+  // ---- Tasks Overlay and launcher ----
+  function createTaskContext() {
+    const contextUrl = new URL(window.location.href);
+    contextUrl.searchParams.set("taskSession", Date.now().toString());
+    window.open(contextUrl.toString(), `task-context-${Date.now()}`);
+  }
+
+  function renderTasks() {
+    if (!tasksList) return;
+    tasksList.innerHTML = "";
+    taskDefinitions.forEach(task => {
+      const li = document.createElement("li");
+      li.className = "task-item";
+
+      const textWrap = document.createElement("div");
+      textWrap.className = "task-text";
+
+      const title = document.createElement("strong");
+      title.textContent = task.title;
+
+      const desc = document.createElement("p");
+      desc.textContent = task.description;
+
+      const viewBtn = document.createElement("button");
+      viewBtn.textContent = "View Task";
+      viewBtn.className = "view-task-button";
+      viewBtn.addEventListener("click", () => {
+        window.open(task.viewUrl, `task-view-${task.id}`);
+      });
+
+      textWrap.appendChild(title);
+      textWrap.appendChild(desc);
+      li.appendChild(textWrap);
+      li.appendChild(viewBtn);
+      tasksList.appendChild(li);
+    });
+  }
+
+  if (startTaskBtn && tasksOverlay && tasksList && closeTasksBtn) {
+    renderTasks();
+
+    startTaskBtn.addEventListener("click", () => {
+      createTaskContext();
+      tasksOverlay.classList.add("active");
+    });
+
+    closeTasksBtn.addEventListener("click", () => {
+      tasksOverlay.classList.remove("active");
+    });
+
+    tasksOverlay.addEventListener("click", event => {
+      if (event.target === tasksOverlay) {
+        tasksOverlay.classList.remove("active");
+      }
+    });
   }
 
   console.log("✅ script validated");
