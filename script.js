@@ -1,11 +1,10 @@
 window.addEventListener("DOMContentLoaded", () => {
-  const primaryLogo = document.querySelector("#logo-container #logo") || document.getElementById("logo");
-  const duplicateLogos = primaryLogo
-    ? Array.from(document.querySelectorAll("#logo")).filter(node => node !== primaryLogo)
-    : [];
-  duplicateLogos.forEach(node => node.remove());
-
-  const logo = primaryLogo || document.getElementById("logo");
+  const logo = document.getElementById("logo");
+  if (logo) {
+    const duplicateLogos = Array.from(document.querySelectorAll("#logo"))
+      .filter(node => node !== logo);
+    duplicateLogos.forEach(node => node.remove());
+  }
   const bubblesContainer = document.getElementById("bubbles-container");
   const noItch = document.getElementById("no-itch");
   const footerIcon = document.getElementById("footer-icon");
@@ -77,7 +76,7 @@ window.addEventListener("DOMContentLoaded", () => {
   window.triggerWhaleEvent = triggerWhaleEvent;
 
   // ---- Main click ----
-  logo.addEventListener("click", () => {
+  logo?.addEventListener("click", () => {
     clicks++;
     localStorage.setItem("clicks", clicks);
     document.getElementById("clicks").textContent =
@@ -109,12 +108,15 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // ---- Footer icon link ----
-  footerIcon.addEventListener("click", () => {
+  footerIcon?.addEventListener("click", () => {
     window.open("https://github.com/ratioactivity", "_blank");
   });
 
   // ---- Idle bubbles ----
-  setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
+  if (bubblesContainer) {
+    spawnBubbles(bubblesContainer, 8, true);
+    setInterval(() => spawnBubbles(bubblesContainer, 2, true), 1200);
+  }
 
   // ---- Finternet Favorites System ----
 
