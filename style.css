@@ -126,6 +126,9 @@ body.deep-dive #logo {
   height: 50px;
   width: auto;
   border-radius: 8px;
+  margin-left: auto;
+  position: relative;
+  left: 178px;
   transition: transform 0.25s ease;
   cursor: pointer;
 }

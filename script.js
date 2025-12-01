@@ -1,5 +1,11 @@
 window.addEventListener("DOMContentLoaded", () => {
   const logo = document.getElementById("logo");
+  const duplicateLogos = document.querySelectorAll("#logo");
+  if (duplicateLogos.length > 1) {
+    duplicateLogos.forEach((node, idx) => {
+      if (idx > 0) node.remove();
+    });
+  }
   const bubblesContainer = document.getElementById("bubbles-container");
   const noItch = document.getElementById("no-itch");
   const footerIcon = document.getElementById("footer-icon");
