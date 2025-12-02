@@ -334,7 +334,13 @@ body.deep-dive #logo {
   line-height: 1.4;
 }
 
-.topic-overlay-search {
+.topic-overlay-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.topic-overlay-actions button {
   background: #00b4d8;
   border: none;
   color: #00293e;
@@ -346,7 +352,7 @@ body.deep-dive #logo {
   transition: transform 0.15s ease, background 0.2s ease;
 }
 
-.topic-overlay-search:hover {
+.topic-overlay-actions button:hover {
   background: #8cf2ff;
   transform: translateY(-1px);
 }
