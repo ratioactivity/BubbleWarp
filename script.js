@@ -26,6 +26,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const menuDeepDiveList = document.getElementById("menu-deepdive-list");
   const menuRadioactiveList = document.getElementById("menu-radioactive-list");
   let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+  let nuclearMode = JSON.parse(localStorage.getItem("nuclearMode") || "false");
   let favBtnResetTimer = null;
   let latestLink = null;
 
@@ -569,8 +570,13 @@ window.addEventListener("DOMContentLoaded", () => {
   const applyDeepDiveTheme = active => {
     document.body.classList.toggle("deep-dive", active);
   };
+  const applyNuclearTheme = active => {
+    document.body.classList.toggle("nuclear-mode", active);
+  };
   const deepDiveToggle = document.getElementById("deepdive-toggle");
+  const nuclearToggle = document.getElementById("nuclear-toggle");
   applyDeepDiveTheme(deepDiveMode);
+  applyNuclearTheme(nuclearMode);
   if (deepDiveToggle) {
     deepDiveToggle.checked = deepDiveMode;
 
@@ -578,6 +584,15 @@ window.addEventListener("DOMContentLoaded", () => {
       deepDiveMode = deepDiveToggle.checked;
       localStorage.setItem("deepDiveMode", deepDiveMode);
       applyDeepDiveTheme(deepDiveMode);
+    });
+  }
+  if (nuclearToggle) {
+    nuclearToggle.checked = nuclearMode;
+
+    nuclearToggle.addEventListener("change", () => {
+      nuclearMode = nuclearToggle.checked;
+      localStorage.setItem("nuclearMode", nuclearMode);
+      applyNuclearTheme(nuclearMode);
     });
   }
 
