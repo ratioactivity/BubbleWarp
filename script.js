@@ -25,8 +25,53 @@ window.addEventListener("DOMContentLoaded", () => {
   const menuNormalList = document.getElementById("menu-normal-list");
   const menuDeepDiveList = document.getElementById("menu-deepdive-list");
   const menuRadioactiveList = document.getElementById("menu-radioactive-list");
+  let deepDiveMode = false;
   let favBtnResetTimer = null;
   let latestLink = null;
+
+  const deepDiveTopicOverlay = document.createElement("div");
+  deepDiveTopicOverlay.id = "deepdive-topic-overlay";
+  deepDiveTopicOverlay.innerHTML = `
+    <div class="deepdive-topic-bubble">
+      <button class="topic-overlay-close" aria-label="Close deep dive topic">✖</button>
+      <p class="topic-overlay-title">🌊 Deep Dive Topic</p>
+      <p class="topic-overlay-body"></p>
+      <button class="topic-overlay-search">Search This Topic</button>
+    </div>
+  `;
+  document.body.appendChild(deepDiveTopicOverlay);
+  const topicOverlayBody = deepDiveTopicOverlay.querySelector(".topic-overlay-body");
+  const topicOverlaySearch = deepDiveTopicOverlay.querySelector(".topic-overlay-search");
+  const topicOverlayClose = deepDiveTopicOverlay.querySelector(".topic-overlay-close");
+  let topicOverlayTimer = null;
+
+  function hideTopicOverlay() {
+    deepDiveTopicOverlay.classList.remove("active");
+    if (topicOverlayTimer) {
+      clearTimeout(topicOverlayTimer);
+      topicOverlayTimer = null;
+    }
+  }
+
+  function showTopicOverlay() {
+    const topic = topics[Math.floor(Math.random() * topics.length)];
+    topicOverlayBody.textContent = topic;
+    topicOverlaySearch.onclick = () => {
+      const q = encodeURIComponent(topic);
+      window.open(`https://www.google.com/search?q=${q}`, "_blank");
+    };
+    hideTopicOverlay();
+    deepDiveTopicOverlay.classList.add("active");
+    topicOverlayTimer = setTimeout(hideTopicOverlay, 5500);
+  }
+
+  deepDiveTopicOverlay.addEventListener("click", event => {
+    if (event.target === deepDiveTopicOverlay) {
+      hideTopicOverlay();
+    }
+  });
+
+  topicOverlayClose?.addEventListener("click", hideTopicOverlay);
 
   const topics = [
     "Uranium glass history",
@@ -537,6 +582,11 @@ window.addEventListener("DOMContentLoaded", () => {
       spawnBubbles(bubblesContainer, 12);
     }
 
+    if (deepDiveMode) {
+      showTopicOverlay();
+      return;
+    }
+
     const filtered = noItch.checked
       ? links.filter(l => !l.includes("itch.io"))
       : links;
@@ -719,7 +769,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (deepDiveToggle && deepDiveOverlay && deepDiveList) {
 
-    let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+    deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
     deepDiveToggle.checked = deepDiveMode;
     if (deepDiveMode) activateDeepDive(true);
 
