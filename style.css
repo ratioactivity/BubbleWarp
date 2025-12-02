@@ -449,7 +449,13 @@ body.nuclear-mode {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.75), rgba(60, 140, 60, 0.45), rgba(10, 40, 8, 0.55));
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 210, 0.75) 30%,
+    rgba(60, 140, 60, 0.35) 65%,
+    rgba(10, 40, 8, 0.55) 100%
+  );
   z-index: 3300;
 }
 
