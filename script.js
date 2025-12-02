@@ -566,13 +566,18 @@ window.addEventListener("DOMContentLoaded", () => {
   window.triggerWhaleEvent = triggerWhaleEvent;
 
   // ---- Deep Dive Toggle (NEW) ----
+  const applyDeepDiveTheme = active => {
+    document.body.classList.toggle("deep-dive", active);
+  };
   const deepDiveToggle = document.getElementById("deepdive-toggle");
+  applyDeepDiveTheme(deepDiveMode);
   if (deepDiveToggle) {
     deepDiveToggle.checked = deepDiveMode;
 
     deepDiveToggle.addEventListener("change", () => {
       deepDiveMode = deepDiveToggle.checked;
       localStorage.setItem("deepDiveMode", deepDiveMode);
+      applyDeepDiveTheme(deepDiveMode);
     });
   }
 
