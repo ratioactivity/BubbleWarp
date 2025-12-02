@@ -572,17 +572,17 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("clicks").textContent =
       `Bubbles burst: ${clicks}`;
 
+    if (deepDiveMode) {
+      showTopicOverlay();
+      return;
+    }
+
     if (clicks % 100 === 0) {
       triggerWhaleEvent();
     } else {
       const soundSrc = sounds[Math.floor(Math.random() * sounds.length)];
       playSound(soundSrc);
       spawnBubbles(bubblesContainer, 12);
-    }
-
-    if (deepDiveMode) {
-      showTopicOverlay();
-      return;
     }
 
     const filtered = noItch.checked
