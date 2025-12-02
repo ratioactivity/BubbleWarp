@@ -36,13 +36,17 @@ window.addEventListener("DOMContentLoaded", () => {
       <button class="topic-overlay-close" aria-label="Close deep dive topic">✖</button>
       <p class="topic-overlay-title">🌊 Deep Dive Topic</p>
       <p class="topic-overlay-body"></p>
-      <button class="topic-overlay-search">Search This Topic</button>
+      <div class="topic-overlay-actions">
+        <button class="topic-overlay-search">Search This Topic</button>
+        <button class="topic-overlay-dismiss">Close</button>
+      </div>
     </div>
   `;
   document.body.appendChild(deepDiveTopicOverlay);
   const topicOverlayBody = deepDiveTopicOverlay.querySelector(".topic-overlay-body");
   const topicOverlaySearch = deepDiveTopicOverlay.querySelector(".topic-overlay-search");
   const topicOverlayClose = deepDiveTopicOverlay.querySelector(".topic-overlay-close");
+  const topicOverlayDismiss = deepDiveTopicOverlay.querySelector(".topic-overlay-dismiss");
 
   function hideTopicOverlay() {
     deepDiveTopicOverlay.classList.remove("active");
@@ -65,6 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   topicOverlayClose?.addEventListener("click", hideTopicOverlay);
+  topicOverlayDismiss?.addEventListener("click", hideTopicOverlay);
 
   const topics = [
     "Uranium glass history",
