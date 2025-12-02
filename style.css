@@ -58,6 +58,10 @@ body.nuclear-mode {
   color: #0f2a05;
 }
 
+body.nuclear-mode #logo {
+  box-shadow: 0 22px 54px rgba(255, 255, 255, 0.55), 0 0 70px rgba(255, 255, 210, 0.6);
+}
+
 #logo-container {
   display: flex;
   justify-content: center;
@@ -451,10 +455,11 @@ body.nuclear-mode {
   padding: 20px;
   background: radial-gradient(
     circle at center,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 210, 0.75) 30%,
-    rgba(60, 140, 60, 0.35) 65%,
-    rgba(10, 40, 8, 0.55) 100%
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 235, 0.3) 28%,
+    rgba(220, 255, 200, 0.22) 52%,
+    rgba(80, 160, 80, 0.18) 72%,
+    rgba(20, 50, 18, 0.12) 100%
   );
   z-index: 3300;
 }
