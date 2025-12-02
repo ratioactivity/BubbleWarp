@@ -87,10 +87,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const nuclearOverlayClose = nuclearMenuOverlay.querySelector(".nuclear-overlay-close");
   const nuclearCategoryLinks = {
     MAIN: [
-      "https://en.wikipedia.org/wiki/Nuclear_power",
-      "https://www.world-nuclear.org/",
-      "https://www.nei.org/home",
-      "https://www.iaea.org/"
+      "https://www.ebay.com/sch/i.html?_nkw=radium&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_fsrp=1&rt=nc&Time%2520Period%2520Manufactured=1900%252D1919|1920%252D1949|1950%252D1959|1960%252D1969|1970%252D1979&_odkw=antique+clock&_osacat=0&_dcat=261602",
+      "https://www.ebay.com/sch/i.html?_dcat=261602&_fsrp=1&rt=nc&_from=R40&_nkw=antique+clock&_sacat=0&Time%2520Period%2520Manufactured=1900%252D1919|1920%252D1949|1950%252D1959|1960%252D1969|1970%252D1979",
+      "https://www.ebay.com/sch/i.html?_dcat=3937&_fsrp=1&rt=nc&_from=R40&_nkw=antique+pocket+watch&_sacat=0&Year%2520Manufactured=1900%252D1909|1910%252D1919|1920%252D1929|1930%252D1939|1940%252D1949|1950%252D1959|1960%252D1969|1970%252D1979",
+      "https://www.ebay.com/sch/i.html?_dcat=31387&_fsrp=1&rt=nc&_from=R40&_nkw=antique+watch&_sacat=0&Year%2520Manufactured=1920%252D1929|1930%252D1939|1940%252D1949|1950%252D1959|1960%252D1969|1970%252D1979|Pre%252D1920",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+westclox&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_fsrp=1&rt=nc&_odkw=antique+watch&_osacat=0&Year%2520Manufactured=1920%252D1929|1930%252D1939|1940%252D1949|1950%252D1959|1960%252D1969|1970%252D1979|Pre%252D1920&_dcat=31387",
+      "https://www.ebay.com/sch/i.html?_nkw=antique mechanical watches"
     ],
     LOTS: [
       "https://www.nrc.gov/",
