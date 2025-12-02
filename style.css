@@ -482,8 +482,7 @@ body.nuclear-mode {
   margin-bottom: 16px;
 }
 
-.nuclear-overlay-grid button,
-.nuclear-overlay-dismiss {
+.nuclear-overlay-grid button {
   background: #6bff7a;
   border: none;
   color: #0f2a05;
@@ -495,14 +494,9 @@ body.nuclear-mode {
   transition: transform 0.15s ease, background 0.2s ease;
 }
 
-.nuclear-overlay-grid button:hover,
-.nuclear-overlay-dismiss:hover {
+.nuclear-overlay-grid button:hover {
   background: #b7ffbf;
   transform: translateY(-1px);
-}
-
-.nuclear-overlay-dismiss {
-  width: 100%;
 }
 
 .nuclear-overlay-close {

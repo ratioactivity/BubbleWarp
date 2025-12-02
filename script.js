@@ -79,22 +79,25 @@ window.addEventListener("DOMContentLoaded", () => {
       <button class="nuclear-overlay-close" aria-label="Close nuclear menu">✖</button>
       <p class="nuclear-overlay-title">☢ Select Your Search ☢</p>
       <div class="nuclear-overlay-grid"></div>
-      <button class="nuclear-overlay-dismiss">Close</button>
     </div>
   `;
   document.body.appendChild(nuclearMenuOverlay);
 
   const nuclearGrid = nuclearMenuOverlay.querySelector(".nuclear-overlay-grid");
   const nuclearOverlayClose = nuclearMenuOverlay.querySelector(".nuclear-overlay-close");
-  const nuclearOverlayDismiss = nuclearMenuOverlay.querySelector(".nuclear-overlay-dismiss");
   const nuclearButtons = [
     "MAIN", "LOTS", "BRANDS", "MISC DIALS",
     "MILITARY", "GAUGES", "LUMINOUS", "GLASS",
-    "ELEMENTS", "HISTORY", "MISC", "NUCLEAR"
+    "ELEMENTS", "HISTORY", "MISC", "Close"
   ];
   nuclearButtons.forEach(label => {
     const button = document.createElement("button");
     button.textContent = label;
+    if (label === "Close") {
+      button.addEventListener("click", () => {
+        hideNuclearOverlay();
+      });
+    }
     nuclearGrid?.appendChild(button);
   });
 
@@ -113,7 +116,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   nuclearOverlayClose?.addEventListener("click", hideNuclearOverlay);
-  nuclearOverlayDismiss?.addEventListener("click", hideNuclearOverlay);
 
   const topics = [
     "Uranium glass history",
