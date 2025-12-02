@@ -105,7 +105,7 @@ window.addEventListener("DOMContentLoaded", () => {
       "https://www.ebay.com/sch/i.html?_nkw=biltmore%20pocket%20watch",
       "https://www.ebay.com/sch/i.html?_nkw=radiolite",
       "https://www.ebay.com/sch/i.html?_nkw=antique%20seth%20thomas",
-      "https://www.ebay.com/sch/i.html?_nkw=antique%20westclox"
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20westclox",
       "https://www.ebay.com/sch/i.html?_nkw=glo-ben",
       "https://www.ebay.com/sch/i.html?_nkw=antique%20telechron",
       "https://www.ebay.com/sch/i.html?_nkw=antique%20general%20electric%20clock",
@@ -117,7 +117,7 @@ window.addEventListener("DOMContentLoaded", () => {
       "https://www.ebay.com/sch/i.html?_nkw=antique%20stopwatch",
       "https://www.ebay.com/sch/i.html?_nkw=8%20day%20clock",
       "https://www.ebay.com/sch/i.html?_nkw=antique%20auto%20clock",
-      "https://www.ebay.com/sch/i.html?_nkw=antique+darkroom+timer&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=darkroom+timer"
+      "https://www.ebay.com/sch/i.html?_nkw=antique+darkroom+timer&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=darkroom+timer",
       "https://www.ebay.com/sch/i.html?_dcat=261605&_fsrp=1&rt=nc&_nkw=antique+desk+clock&Time%2520Period%2520Manufactured=1920%252D1949%7C1900%252D1919%7C1950%252D1959%7C1960%252D1969%7C1970%252D1979",
       "https://www.ebay.com/sch/i.html?_dcat=261605&_fsrp=1&rt=nc&_from=R40&_nkw=antique+mantle+clock&_sacat=0&Time%2520Period%2520Manufactured=1920%252D1949%7C1900%252D1919%7C1950%252D1959%7C1960%252D1969%7C1970%252D1979",
       "https://www.ebay.com/sch/i.html?_nkw=antique%20timer",
@@ -129,17 +129,17 @@ window.addEventListener("DOMContentLoaded", () => {
       "https://www.ebay.com/sch/i.html?_nkw=antique%20anti-submarine%20dial",
       "https://www.ebay.com/sch/i.html?_nkw=antique%20anti-aircraft%20dial",
       "https://www.ebay.com/sch/i.html?_nkw=military%20maritime%20instrument",
-      "https://www.ebay.com/sch/i.html?_nkw=military%20aeronautical%20instrument"
-      "https://www.ebay.com/sch/i.html?_nkw=military%20aviation%20instrument",
-      "https://www.ebay.com/sch/i.html?_nkw=WW2%20gauge",
-      "https://www.ebay.com/sch/i.html?_nkw=military%20gauge",
+        "https://www.ebay.com/sch/i.html?_nkw=military%20aeronautical%20instrument",
+        "https://www.ebay.com/sch/i.html?_nkw=military%20aviation%20instrument",
+        "https://www.ebay.com/sch/i.html?_nkw=WW2%20gauge",
+        "https://www.ebay.com/sch/i.html?_nkw=military%20gauge",
       "https://www.ebay.com/sch/i.html?_nkw=antique+swiss+military+watch&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=swiss+military+watch",
       "https://www.ebay.com/sch/i.html?_nkw=antique%20soviet%20watch",
       "https://www.ebay.com/sch/i.html?_nkw=antique+military+watch+hands&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=military+watch+hands",
       "https://www.ebay.com/sch/i.html?_nkw=antique+USSR+watch&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=USSR+watch",
       "https://www.ebay.com/sch/i.html?_nkw=WW2%20watch",
       "https://www.ebay.com/sch/i.html?_nkw=military%20pocket%20watch",
-      "https://www.ebay.com/sch/i.html?_nkw=antique+military+watch&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=military+watch,"
+        "https://www.ebay.com/sch/i.html?_nkw=antique+military+watch&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=military+watch",
       "https://www.ebay.com/sch/i.html?_nkw=WW2%20clock",
       "https://www.ebay.com/sch/i.html?_nkw=antique%20submarine%20clock"
     ],
