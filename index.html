@@ -34,6 +34,7 @@
       <input type="checkbox" id="deepdive-toggle" />
       🌊 deep dive
     </label>
+    <button id="menu-button">📜 Menu</button>
     <button id="add-favorite-button">⭐ It was fintastic!</button>
     <button id="favorites-button">⭐ Finternet Favorites</button>
     <img id="footer-icon" src="assets/icon128.png" alt="GitHub Link">
@@ -57,5 +58,27 @@
 </div>
 
   </main>
+
+  <div id="menu-modal" aria-hidden="true">
+    <div id="menu-backdrop"></div>
+    <div id="menu-content" role="dialog" aria-modal="true" aria-label="Menu">
+      <button id="menu-close" aria-label="Close menu">✖</button>
+      <div id="menu-tabs">
+        <button class="menu-tab active" data-tab="normal">Normal Mode</button>
+        <button class="menu-tab" data-tab="deep-dive">Deep Dive</button>
+        <button class="menu-tab" data-tab="radioactive">Radioactive</button>
+      </div>
+      <div class="menu-panel active" data-panel="normal">
+        <ul id="menu-normal-list"></ul>
+      </div>
+      <div class="menu-panel" data-panel="deep-dive">
+        <ul id="menu-deepdive-list"></ul>
+      </div>
+      <div class="menu-panel" data-panel="radioactive">
+        <ul id="menu-radioactive-list"></ul>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
