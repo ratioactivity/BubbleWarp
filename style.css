@@ -234,65 +234,72 @@ body.deep-dive #logo {
 }
 
 /* ===== Deep Dive Overlay ===== */
-#deepdive-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 15, 30, 0.95);
-  border: 2px solid rgba(0, 90, 150, 0.6);
-  color: #d0f4ff;
-  font-family: "NTBrickSans", sans-serif;
-  padding: 25px;
-  border-radius: 15px;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1800;
-  width: 80%;
-  max-width: 600px;
-  max-height: 70%;
-  overflow-y: auto;
-}
-
-#deepdive-overlay.active {
-  display: flex;
-}
-
-#deepdive-list {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0;
-  width: 100%;
-}
-
-#deepdive-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0, 50, 100, 0.4);
-  margin: 6px 0;
-  padding: 8px 12px;
-  border-radius: 8px;
-}
-
-#deepdive-list button {
-  background: #0077b6;
-  border: none;
-  color: #fff;
-  border-radius: 6px;
-  padding: 4px 8px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-#deepdive-list button:hover {
-  background: #00b4d8;
-}
-
 #favorites-list a {
   text-decoration: none;
   color: #0b405b;
+}
+
+/* ===== Deep Dive Topic Overlay ===== */
+#deepdive-topic-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 20, 45, 0.45);
+  z-index: 3200;
+}
+
+#deepdive-topic-overlay.active {
+  display: flex;
+}
+
+.deepdive-topic-box {
+  position: relative;
+  background: #0a405e;
+  color: #e4f7ff;
+  padding: 22px 24px 18px;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  width: min(420px, 92vw);
+  text-align: center;
+  font-family: "NTBrickSans", sans-serif;
+}
+
+.deepdive-topic-text {
+  margin: 0 0 16px;
+  font-size: 1.35em;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.deepdive-topic-search {
+  background: #8cf2ff;
+  border: none;
+  color: #063d5a;
+  font-weight: 800;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.deepdive-topic-search:hover {
+  background: #b9f7ff;
+  transform: translateY(-1px);
+}
+
+.deepdive-topic-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #e4f7ff;
+  font-size: 1.05em;
+  cursor: pointer;
 }
 
 .remove-favorite {
@@ -412,7 +419,7 @@ body.deep-dive #logo {
 
 #menu-tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   margin: 10px 0 14px;
 }

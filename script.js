@@ -23,435 +23,81 @@ window.addEventListener("DOMContentLoaded", () => {
   const menuTabs = Array.from(document.querySelectorAll(".menu-tab"));
   const menuPanels = Array.from(document.querySelectorAll(".menu-panel"));
   const menuNormalList = document.getElementById("menu-normal-list");
-  const menuDeepDiveList = document.getElementById("menu-deepdive-list");
   const menuRadioactiveList = document.getElementById("menu-radioactive-list");
+  let deepDiveMode = false;
   let favBtnResetTimer = null;
   let latestLink = null;
 
-  const topics = [
-    "Uranium glass history",
-    "Titanium metallurgy",
-    "Historical apothecary practices",
-    "Radium Girls",
-    "Salem Witch Trials",
-    "Pompeii",
-    "Ancient Mayan civilization",
-    "The Franco regime in Spain",
-    "The Spanish Flu pandemic",
-    "Aqua Tofana and historical poisons",
-    "The Rwandan Genocide",
-    "Gini Coefficient around the world",
-    "Che Guevara",
-    "Greek mythology",
-    "Norse mythology",
-    "Egyptian mythology",
-    "History of atheism",
-    "Scientology",
-    "Heaven's Gate",
-    "Buddhism",
-    "Communism",
-    "Anarchism",
-    "The death penalty",
-    "Evolution of drug laws",
-    "History of tea",
-    "History of wine",
-    "American Prohibition",
-    "Weird international laws",
-    "Castles",
-    "Fashion evolution",
-    "The French Revolution",
-    "History of forensic science",
-    "Influence of memes on social behavior",
-    "Brain rot psychology",
-    "Terrorism using biological and chemical agents",
-    "Sign language",
-    "How airports work",
-    "Clockbuilding",
-    "Blacksmithing",
-    "Funeral arts",
-    "Natural selection",
-    "Bioremediation",
-    "Nuclear semiotics",
-    "LNT model vs radiation hormesis",
-    "Dark matter",
-    "Uranium glass history",
-    "Nuclear fusion",
-    "Supernovae",
-    "Neutron stars",
-    "Black holes",
-    "Quasars",
-    "Hypothetical stars",
-    "Milky Way galaxy",
-    "Andromeda galaxy",
-    "Globular clusters",
-    "Gas giants",
-    "Ice giants",
-    "Rogue planets",
-    "Hot Jupiters",
-    "Exoplanets",
-    "Asteroid impacts",
-    "Gamma-ray bursts",
-    "Magnetars",
-    "Solar flares",
-    "Spaghettification",
-    "Time dilation",
-    "Wormholes",
-    "Multiverse theories",
-    "Quantum foam",
-    "Entropy",
-    "Voyager 1 and 2",
-    "Apollo missions",
-    "ISS",
-    "Mars missions",
-    "Heat death of the universe",
-    "Boltzmann brains",
-    "The Great Filter",
-    "Fermi paradox",
-    "Dyson spheres",
-    "The simulation hypothesis",
-    "The anthropic principle",
-    "The dark forest theory",
-    "Many-worlds interpretation",
-    "Block universe theory",
-    "Eternal recurrence",
-    "Quantum immortality",
-    "Holographic principle",
-    "Retrocausality",
-    "Panspermia",
-    "Pangaea",
-    "Gaia hypothesis",
-    "The Big Bang",
-    "Inflation theory",
-    "CMB cosmic microwave background",
-    "Fusion theory",
-    "Tokamak concept",
-    "Cold fusion controversy",
-    "Thermonuclear weapons",
-    "Nuclear pulse propulsion (Project Orion)",
-    "Nuclear winter theory",
-    "Alpha, beta, and gamma decay",
-    "Half-lives",
-    "Isotopes",
-    "Carbon-14 dating",
-    "Radon in mines",
-    "CERN",
-    "Quark model",
-    "Strong vs weak nuclear force",
-    "Quantum tunneling",
-    "Pair production and annihilation",
-    "Nuclear binding energy curve",
-    "Neutrinos",
-    "Nuclear saltwater rocket",
-    "Muon-catalyzed fusion",
-    "Nuclear isomer batteries",
-    "Antimatter-catalyzed fusion",
-    "Nuclear pairing theory",
-    "Prompt criticality",
-    "Radiological vs nuclear events",
-    "Fallout vs fission vs activation products",
-    "Decay chains",
-    "Neutrino hypothesis",
-    "Nuclear semiotics",
-    "Pitchblende",
-    "Chicago Pile-1",
-    "X-10 Graphite Reactor",
-    "Hanford B Reactor",
-    "Windscale Piles",
-    "Pressurized water reactors",
-    "Boiling water reactors",
-    "Thorium reactors",
-    "Pebble-bed reactors",
-    "The Demon Core",
-    "SL-1 reactor accident",
-    "Kyshtym disaster",
-    "Windscale fire",
-    "Chernobyl disaster",
-    "Fukushima disaster",
-    "Tokaimura criticality incident",
-    "JCO fuel plant accident",
-    "Goiania accident",
-    "Kramatorsk radiological accident",
-    "Soviet submarine K-431 incident",
-    "Acerinox radioactive spill",
-    "Western Australia radioactive capsule event",
-    "Church Rock uranium mill spill",
-    "San Juan de Dios hospital incident",
-    "Vinca criticality accident",
-    "Urakami Church exposure",
-    "Los Alamos plutonium incidents",
-    "Tammiku radiation accident",
-    "Samut Prakan accident",
-    "Henan mine exposure",
-    "1984 Moroccan radiation accident",
-    "Lucens reactor accident",
-    "Idaho Falls waste drum event",
-    "Soreq Research Center accident",
-    "Halifax explosion",
-    "Ural Mountains radioactive releases",
-    "Missing nuclear weapons",
-    "Breeder reactor theory",
-    "Cross-section theory",
-    "Bethe-Weizsäcker semi-empirical mass formula",
-    "Nuclear shell model",
-    "Liquid-drop model",
-    "Collective nuclear models",
-    "Volcanic degassing",
-    "Comets",
-    "Five major oceans",
-    "Ocean layers",
-    "Hydrothermal vents",
-    "Mariana Trench",
-    "Abyssal plains",
-    "Cambrian explosion",
-    "Deep-sea gigantism",
-    "Bioluminescence",
-    "Extremophile organisms",
-    "Colossal squid",
-    "Marine snow",
-    "The Challenger Expedition",
-    "Jacques Cousteau",
-    "Alvin submersible",
-    "Trieste submersible",
-    "James Cameron submersibles",
-    "Titanic shipwreck",
-    "Lusitania sinking",
-    "The Bloop",
-    "Deepwater Horizon disaster",
-    "Poseidon mythology",
-    "Njord mythology",
-    "Tiamat mythology",
-    "Mermaid folklore",
-    "Siren folklore",
-    "Kraken mythology",
-    "Cthulhu mythos",
-    "Bermuda Triangle",
-    "Maritime superstitions",
-    "Submarine warfare",
-    "Submarine stealth technology",
-    "False ocean discoveries",
-    "Lake Baikal anomaly",
-    "Freshwater cryptids",
-    "Ocean cryptids",
-    "Brine pools",
-    "Oceanic disappearances",
-    "Cannibalistic crabs",
-    "Goblin shark",
-    "Deep-sea dragonfish",
-    "Gulper eel",
-    "Barreleye fish",
-    "Angler fish",
-    "Football fish",
-    "Deepstaria jellyfish",
-    "Comb jellies",
-    "Vampire squid",
-    "Firework jellyfish",
-    "Yeti crab",
-    "Giant isopod",
-    "Ghost shrimp",
-    "Oarfish",
-    "Hagfish",
-    "Mantis shrimp",
-    "Blobfish",
-    "Leafy sea dragon",
-    "Siphonophores",
-    "Giant tube worms",
-    "Blue whale",
-    "Orca biology",
-    "Orca psychology",
-    "Orca ecotypes",
-    "Sperm whale",
-    "Greenland shark",
-    "Dolphin species",
-    "Dumbo octopus",
-    "Blue-ringed octopus",
-    "Blanket octopus",
-    "Box jellyfish",
-    "Cone snail",
-    "Stonefish",
-    "Sarcastic fringehead",
-    "Stargazer fish",
-    "Tripod fish",
-    "Parrotfish",
-    "Frilled shark",
-    "Cookiecutter shark",
-    "Wobbegong sharks",
-    "Megamouth shark",
-    "Narwhal biology",
-    "Humpback whale",
-    "Ocean sunfish (Mola mola)",
-    "Beluga whales",
-    "Sea lions",
-    "Seal species",
-    "Tardigrades",
-    "Radiolarians",
-    "Spinosaurus",
-    "Dunkleosteus",
-    "Cladoselache",
-    "Helicoprion",
-    "Mosasaurus",
-    "Pliosaurus",
-    "Elasmosaurus",
-    "Ichthyosaurus",
-    "Dimetrodon",
-    "Diplocaulus",
-    "Sarcosuchus",
-    "Deinosuchus",
-    "Purussaurus",
-    "Baryonyx",
-    "Suchomimus",
-    "Jaekelopterus",
-    "Pakicetus",
-    "Ambulocetus",
-    "Indohyus",
-    "Platyhystrix",
-    "Inflation theory",
-    "Supernovae",
-    "Neutron stars",
-    "Black holes",
-    "Quasars",
-    "Hypothetical stars",
-    "Globular clusters",
-    "Gas giants",
-    "Ice giants",
-    "Rogue planets",
-    "Hot Jupiters",
-    "Exoplanets",
-    "Asteroid impacts",
-    "Gamma-ray bursts",
-    "Magnetars",
-    "Solar flares",
-    "Spaghettification",
-    "Time dilation",
-    "Wormholes",
-    "Multiverse theories",
-    "Quantum foam",
-    "Entropy",
-    "Voyager program",
-    "ISS research",
-    "Mars missions",
-    "Boltzmann brains",
-    "The Great Filter",
-    "Dyson spheres",
-    "The simulation hypothesis",
-    "The anthropic principle",
-    "The dark forest theory",
-    "Many-worlds interpretation",
-    "Block universe theory",
-    "Eternal recurrence",
-    "Quantum immortality",
-    "Holographic principle",
-    "Retrocausality",
-    "Panspermia",
-    "Gaia hypothesis",
-    "The hard problem of consciousness",
-    "Integrated Information Theory (IIT)",
-    "The Omega Point",
-    "Vacuum decay",
-    "False vacuum collapse",
-    "Matrioshka brain",
-    "The Thanatos drive",
-    "Terror management theory",
-    "The uncanny valley",
-    "Learned helplessness",
-    "Depersonalization and derealization",
-    "Existential psychopathology",
-    "Cognitive dissonance",
-    "The Lucifer Effect",
-    "Banality of evil",
-    "Shadow integration (Jung)",
-    "The Bluebeard archetype",
-    "The Milgram obedience study",
-    "The Stanford prison experiment",
-    "Capgras delusion",
-    "Cotard's syndrome",
-    "Alien hand syndrome",
-    "Synesthesia-psychosis overlap",
-    "Call of the void (L’appel du vide)",
-    "The horror of hyperempathy",
-    "Existential isolation",
-    "Death positivity movement",
-    "Trauma theory",
-    "Strain theory",
-    "1973 Mount Gambier cave diving accident",
-    "Uranium miners and mortality",
-    "Child miners",
-    "Nutty Putty cave disaster",
-    "Lost line cave diving phenomenon",
-    "Rescue impossibility in caves",
-    "Sheck Exley at Zacatón",
-    "Agnes Milowka in Tank Cave",
-    "Dave Shaw at Bushman’s Hole",
-    "Pluragrotta Norway cave accident",
-    "Ian Plant Bull Pot accident",
-    "Tri-State tornado",
-    "Daulatpur–Saturia tornado",
-    "El Reno tornado",
-    "Jarrell tornado",
-    "Joplin tornado",
-    "Bridge Creek–Moore tornado",
-    "The Super Outbreak tornadoes",
-    "Andover tornado outbreak",
-    "Catatumbo lightning",
-    "Ball lightning",
-    "Volcano lightning",
-    "Superbolt lightning events",
-    "Roy Sullivan lightning strikes",
-    "Great Blizzard of 1888",
-    "Sundogs",
-    "Green flash phenomenon",
-    "Brocken spectre",
-    "Mammatus clouds",
-    "Lenticular clouds",
-    "Morning Glory clouds",
-    "Volcanic winter",
-    "Blood rain",
-    "Firestorms",
-    "Rogue waves",
-    "Lake Nyos limnic eruption",
-    "Waterspouts",
-    "Boiling River of Peru",
-    "Brinicles",
-    "Polar vortex",
-    "Aurora borealis",
-    "Democritus",
-    "John Dalton 1803",
-    "J.J. Thomson 1897",
-    "Ernest Rutherford",
-    "Niels Bohr",
-    "Erwin Schrödinger",
-    "Henri Becquerel",
-    "Marie and Pierre Curie",
-    "James Chadwick 1932",
-    "Enrico Fermi 1934",
-    "SL-1 accident",
-    "Kyshtym disaster",
-    "Windscale fire",
-    "Chernobyl disaster",
-    "Tokaimura accident",
-    "Lucens reactor incident",
-    "Soreq accident",
-    "San Juan de Dios hospital incident",
-    "Tammiku accident",
-    "Samut Prakan radiation accident",
-    "Church Rock spill",
-    "Kramatorsk accident",
-    "Idaho Falls waste drum accident",
-    "Acerinox spill",
-    "Moroccan radiation accident 1984",
-    "Henan mine radiation exposure",
-    "Soviet submarine K-431 incident",
-    "Western Australia capsule incident",
-    "Missing nuclear weapons",
-    "Sundial nuclear weapon",
-    "The Trinity tests",
-    "Mold becoming antibiotics",
-    "Linguistics",
-    "UFO sightings",
-    "Animal psychology",
-    "Synthetic human body parts",
-    "Radiation hormesis (as a concept)",
-    "How nuclear reactors work"
+  const deepDiveTopics = [
+    "radiation",
+    "uranium glass",
+    "radium paint",
+    "dosimeters",
+    "luminous dials",
+    "civil defense meters",
+    "fallout shelters",
+    "chernobyl elephants foot",
+    "nuclear semiotics",
+    "radiation hormesis",
+    "geiger counters",
+    "radioactive decay chains",
+    "hot particles",
+    "half-life curves",
+    "ionizing vs non-ionizing radiation",
+    "cosmic rays",
+    "alpha beta gamma shielding",
+    "radiation badges",
+    "tritium keychains",
+    "luminous watch hands"
   ];
+
+  const deepDiveTopicOverlay = document.createElement("div");
+  deepDiveTopicOverlay.id = "deepdive-topic-overlay";
+  deepDiveTopicOverlay.innerHTML = `
+    <div class="deepdive-topic-box">
+      <button class="deepdive-topic-close" aria-label="Close deep dive topic">✖</button>
+      <p class="deepdive-topic-text"></p>
+      <button class="deepdive-topic-search">Search This Topic</button>
+    </div>
+  `;
+  document.body.appendChild(deepDiveTopicOverlay);
+
+  const deepDiveTopicText = deepDiveTopicOverlay.querySelector(".deepdive-topic-text");
+  const deepDiveTopicSearch = deepDiveTopicOverlay.querySelector(".deepdive-topic-search");
+  const deepDiveTopicClose = deepDiveTopicOverlay.querySelector(".deepdive-topic-close");
+  let deepDiveTopicTimer = null;
+
+  function hideDeepDiveTopic() {
+    deepDiveTopicOverlay.classList.remove("active");
+    if (deepDiveTopicTimer) {
+      clearTimeout(deepDiveTopicTimer);
+      deepDiveTopicTimer = null;
+    }
+  }
+
+  function showDeepDiveTopic(topic) {
+    if (!topic) return;
+    deepDiveTopicText.textContent = topic;
+    deepDiveTopicSearch.onclick = () => {
+      const q = encodeURIComponent(topic);
+      window.open(`https://www.google.com/search?q=${q}`, "_blank");
+    };
+    hideDeepDiveTopic();
+    deepDiveTopicOverlay.classList.add("active");
+    deepDiveTopicTimer = setTimeout(hideDeepDiveTopic, 3000);
+  }
+
+  deepDiveTopicOverlay.addEventListener("click", event => {
+    if (event.target === deepDiveTopicOverlay) {
+      hideDeepDiveTopic();
+    }
+  });
+
+  deepDiveTopicClose?.addEventListener("click", hideDeepDiveTopic);
+
+  function pickRandomDeepDiveTopic() {
+    return deepDiveTopics[Math.floor(Math.random() * deepDiveTopics.length)];
+  }
 
   const radioactiveLinks = [
     "https://www.world-nuclear.org/",
@@ -528,6 +174,12 @@ window.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("clicks", clicks);
     document.getElementById("clicks").textContent =
       `Bubbles burst: ${clicks}`;
+
+    if (deepDiveMode) {
+      const topic = pickRandomDeepDiveTopic();
+      showDeepDiveTopic(topic);
+      return;
+    }
 
     if (clicks % 100 === 0) {
       triggerWhaleEvent();
@@ -682,7 +334,6 @@ window.addEventListener("DOMContentLoaded", () => {
     menuTabs.length &&
     menuPanels.length &&
     menuNormalList &&
-    menuDeepDiveList &&
     menuRadioactiveList
   ) {
     renderMenuSection(
@@ -690,12 +341,6 @@ window.addEventListener("DOMContentLoaded", () => {
       Array.isArray(links) ? links : [],
       item => item,
       item => item.replace(/^https?:\/\//, "")
-    );
-    renderMenuSection(
-      menuDeepDiveList,
-      topics,
-      topic => `https://www.google.com/search?q=${encodeURIComponent(topic)}`,
-      topic => topic
     );
     renderMenuSection(
       menuRadioactiveList,
@@ -714,49 +359,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ---- Deep Dive Mode ----
   const deepDiveToggle = document.getElementById("deepdive-toggle");
-  const deepDiveOverlay = document.getElementById("deepdive-overlay");
-  const deepDiveList = document.getElementById("deepdive-list");
-
-  if (deepDiveToggle && deepDiveOverlay && deepDiveList) {
-
-    let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+  if (deepDiveToggle) {
+    deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
     deepDiveToggle.checked = deepDiveMode;
-    if (deepDiveMode) activateDeepDive(true);
+    document.body.classList.toggle("deep-dive", deepDiveMode);
 
     deepDiveToggle.addEventListener("change", () => {
       deepDiveMode = deepDiveToggle.checked;
       localStorage.setItem("deepDiveMode", deepDiveMode);
-      activateDeepDive(deepDiveMode);
+      document.body.classList.toggle("deep-dive", deepDiveMode);
     });
-
-    function activateDeepDive(on) {
-      if (on) {
-        document.body.classList.add("deep-dive");
-        deepDiveOverlay.classList.add("active");
-        renderDeepDive();
-      } else {
-        document.body.classList.remove("deep-dive");
-        deepDiveOverlay.classList.remove("active");
-      }
-    }
-
-    function renderDeepDive() {
-      deepDiveList.innerHTML = "";
-      topics.forEach(topic => {
-        const li = document.createElement("li");
-        li.textContent = topic;
-        const btn = document.createElement("button");
-        btn.textContent = "Search";
-        btn.addEventListener("click", () => {
-          const q = encodeURIComponent(topic);
-          window.open(`https://www.google.com/search?q=${q}`, "_blank");
-        });
-        li.appendChild(btn);
-        deepDiveList.appendChild(li);
-      });
-    }
-  } else {
-    console.warn("Deep Dive UI not found; skipping feature initialization.");
   }
 
   console.log("✅ script validated");
