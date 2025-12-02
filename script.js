@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const menuNormalList = document.getElementById("menu-normal-list");
   const menuDeepDiveList = document.getElementById("menu-deepdive-list");
   const menuRadioactiveList = document.getElementById("menu-radioactive-list");
-  let deepDiveMode = false;
+  let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
   let favBtnResetTimer = null;
   let latestLink = null;
 
@@ -566,17 +566,15 @@ window.addEventListener("DOMContentLoaded", () => {
   window.triggerWhaleEvent = triggerWhaleEvent;
 
   // ---- Deep Dive Toggle (NEW) ----
-let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+  const deepDiveToggle = document.getElementById("deepdive-toggle");
+  if (deepDiveToggle) {
+    deepDiveToggle.checked = deepDiveMode;
 
-const deepDiveToggle = document.getElementById("deepdive-toggle");
-if (deepDiveToggle) {
-  deepDiveToggle.checked = deepDiveMode;
-
-  deepDiveToggle.addEventListener("change", () => {
-    deepDiveMode = deepDiveToggle.checked;
-    localStorage.setItem("deepDiveMode", deepDiveMode);
-  });
-}
+    deepDiveToggle.addEventListener("change", () => {
+      deepDiveMode = deepDiveToggle.checked;
+      localStorage.setItem("deepDiveMode", deepDiveMode);
+    });
+  }
 
   // ---- Main click ----
   logo?.addEventListener("click", () => {
