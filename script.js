@@ -25,7 +25,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const menuNormalList = document.getElementById("menu-normal-list");
   const menuDeepDiveList = document.getElementById("menu-deepdive-list");
   const menuRadioactiveList = document.getElementById("menu-radioactive-list");
-  let deepDiveMode = false;
+  let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+  let nuclearMode = JSON.parse(localStorage.getItem("nuclearMode") || "false");
   let favBtnResetTimer = null;
   let latestLink = null;
 
@@ -70,6 +71,51 @@ window.addEventListener("DOMContentLoaded", () => {
 
   topicOverlayClose?.addEventListener("click", hideTopicOverlay);
   topicOverlayDismiss?.addEventListener("click", hideTopicOverlay);
+
+  const nuclearMenuOverlay = document.createElement("div");
+  nuclearMenuOverlay.id = "nuclear-menu-overlay";
+  nuclearMenuOverlay.innerHTML = `
+    <div class="nuclear-menu-card">
+      <button class="nuclear-overlay-close" aria-label="Close nuclear menu">✖</button>
+      <p class="nuclear-overlay-title">☢ Select Your Search ☢</p>
+      <div class="nuclear-overlay-grid"></div>
+    </div>
+  `;
+  document.body.appendChild(nuclearMenuOverlay);
+
+  const nuclearGrid = nuclearMenuOverlay.querySelector(".nuclear-overlay-grid");
+  const nuclearOverlayClose = nuclearMenuOverlay.querySelector(".nuclear-overlay-close");
+  const nuclearButtons = [
+    "MAIN", "LOTS", "BRANDS", "MISC DIALS",
+    "MILITARY", "GAUGES", "LUMINOUS", "GLASS",
+    "ELEMENTS", "HISTORY", "MISC", "Close"
+  ];
+  nuclearButtons.forEach(label => {
+    const button = document.createElement("button");
+    button.textContent = label;
+    if (label === "Close") {
+      button.addEventListener("click", () => {
+        hideNuclearOverlay();
+      });
+    }
+    nuclearGrid?.appendChild(button);
+  });
+
+  const hideNuclearOverlay = () => {
+    nuclearMenuOverlay.classList.remove("active");
+  };
+
+  const showNuclearOverlay = () => {
+    nuclearMenuOverlay.classList.add("active");
+  };
+
+  nuclearMenuOverlay.addEventListener("click", event => {
+    if (event.target === nuclearMenuOverlay) {
+      hideNuclearOverlay();
+    }
+  });
+
+  nuclearOverlayClose?.addEventListener("click", hideNuclearOverlay);
 
   const topics = [
     "Uranium glass history",
@@ -566,17 +612,34 @@ window.addEventListener("DOMContentLoaded", () => {
   window.triggerWhaleEvent = triggerWhaleEvent;
 
   // ---- Deep Dive Toggle (NEW) ----
-let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+  const applyDeepDiveTheme = active => {
+    document.body.classList.toggle("deep-dive", active);
+  };
+  const applyNuclearTheme = active => {
+    document.body.classList.toggle("nuclear-mode", active);
+  };
+  const deepDiveToggle = document.getElementById("deepdive-toggle");
+  const nuclearToggle = document.getElementById("nuclear-toggle");
+  applyDeepDiveTheme(deepDiveMode);
+  applyNuclearTheme(nuclearMode);
+  if (deepDiveToggle) {
+    deepDiveToggle.checked = deepDiveMode;
 
-const deepDiveToggle = document.getElementById("deepdive-toggle");
-if (deepDiveToggle) {
-  deepDiveToggle.checked = deepDiveMode;
+    deepDiveToggle.addEventListener("change", () => {
+      deepDiveMode = deepDiveToggle.checked;
+      localStorage.setItem("deepDiveMode", deepDiveMode);
+      applyDeepDiveTheme(deepDiveMode);
+    });
+  }
+  if (nuclearToggle) {
+    nuclearToggle.checked = nuclearMode;
 
-  deepDiveToggle.addEventListener("change", () => {
-    deepDiveMode = deepDiveToggle.checked;
-    localStorage.setItem("deepDiveMode", deepDiveMode);
-  });
-}
+    nuclearToggle.addEventListener("change", () => {
+      nuclearMode = nuclearToggle.checked;
+      localStorage.setItem("nuclearMode", nuclearMode);
+      applyNuclearTheme(nuclearMode);
+    });
+  }
 
   // ---- Main click ----
   logo?.addEventListener("click", () => {
@@ -587,6 +650,11 @@ if (deepDiveToggle) {
 
     if (deepDiveMode) {
       showTopicOverlay();
+      return;
+    }
+
+    if (nuclearMode) {
+      showNuclearOverlay();
       return;
     }
 
@@ -787,3 +855,6 @@ function spawnBubbles(container, count, idle = false) {
     setTimeout(() => bubble.remove(), 8000);
   }
 }
+
+  console.log("✅ script validated");
+});
