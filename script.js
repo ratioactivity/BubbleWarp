@@ -92,67 +92,116 @@ window.addEventListener("DOMContentLoaded", () => {
       "https://www.ebay.com/sch/i.html?_dcat=3937&_fsrp=1&rt=nc&_from=R40&_nkw=antique+pocket+watch&_sacat=0&Year%2520Manufactured=1900%252D1909|1910%252D1919|1920%252D1929|1930%252D1939|1940%252D1949|1950%252D1959|1960%252D1969|1970%252D1979",
       "https://www.ebay.com/sch/i.html?_dcat=31387&_fsrp=1&rt=nc&_from=R40&_nkw=antique+watch&_sacat=0&Year%2520Manufactured=1920%252D1929|1930%252D1939|1940%252D1949|1950%252D1959|1960%252D1969|1970%252D1979|Pre%252D1920",
       "https://www.ebay.com/sch/i.html?_nkw=antique+westclox&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_fsrp=1&rt=nc&_odkw=antique+watch&_osacat=0&Year%2520Manufactured=1920%252D1929|1930%252D1939|1940%252D1949|1950%252D1959|1960%252D1969|1970%252D1979|Pre%252D1920&_dcat=31387",
-      "https://www.ebay.com/sch/i.html?_nkw=antique mechanical watches"
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20mechanical%20watches"
     ],
     LOTS: [
-      "https://www.nrc.gov/",
-      "https://www.epa.gov/radiation",
-      "https://www.energy.gov/ne/nuclear-energy",
-      "https://www.oecd-nea.org/"
+      "https://www.ebay.com/sch/i.html?_nkw=vintage%20pocket%20watch%20lot",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20pocket%20watch%20lot",
+      "https://www.ebay.com/sch/i.html?_nkw=vintage%20watch%20lot",
+      "https://www.ebay.com/sch/i.html?_nkw=vintage%20clock%20lot",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20clock%20lot"
     ],
     BRANDS: [
-      "https://www.ge.com/power/nuclear",
-      "https://www.westinghousenuclear.com/",
-      "https://www.ramu.com.au/",
-      "https://www.rolls-royce.com/innovation/small-modular-reactors.aspx"
+      "https://www.ebay.com/sch/i.html?_nkw=biltmore%20pocket%20watch",
+      "https://www.ebay.com/sch/i.html?_nkw=radiolite",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20seth%20thomas",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20westclox"
+      "https://www.ebay.com/sch/i.html?_nkw=glo-ben",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20telechron",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20general%20electric%20clock",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20pocket%20ben",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20big%20ben",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20baby%20ben"
     ],
     "MISC DIALS": [
-      "https://www.atomicarchive.com/",
-      "https://hps.org/",
-      "https://www.nist.gov/topics/radiation",
-      "https://www.nrc.gov/reading-rm/doc-collections/fact-sheets/radiological-contaminants.html"
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20stopwatch",
+      "https://www.ebay.com/sch/i.html?_nkw=8%20day%20clock",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20auto%20clock",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+darkroom+timer&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=darkroom+timer"
+      "https://www.ebay.com/sch/i.html?_dcat=261605&_fsrp=1&rt=nc&_nkw=antique+desk+clock&Time%2520Period%2520Manufactured=1920%252D1949%7C1900%252D1919%7C1950%252D1959%7C1960%252D1969%7C1970%252D1979",
+      "https://www.ebay.com/sch/i.html?_dcat=261605&_fsrp=1&rt=nc&_from=R40&_nkw=antique+mantle+clock&_sacat=0&Time%2520Period%2520Manufactured=1920%252D1949%7C1900%252D1919%7C1950%252D1959%7C1960%252D1969%7C1970%252D1979",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20timer",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+lensatic+compass&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=lensatic+compass",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20compass",
+      "https://www.ebay.com/sch/i.html?_dcat=31387&_fsrp=1&rt=nc&_from=R40&_nkw=antique+divers+watch&_sacat=0&Year%2520Manufactured=Pre%252D1920%7C1920%252D1929%7C1930%252D1939%7C1940%252D1949%7C1950%252D1959%7C1960%252D1969%7C1970%252D1979"
     ],
     MILITARY: [
-      "https://www.ctbto.org/",
-      "https://fas.org/issues/nuclear-weapons/",
-      "https://www.icrc.org/en/document/nuclear-weapons",
-      "https://www.un.org/disarmament/wmd/nuclear/"
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20anti-submarine%20dial",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20anti-aircraft%20dial",
+      "https://www.ebay.com/sch/i.html?_nkw=military%20maritime%20instrument",
+      "https://www.ebay.com/sch/i.html?_nkw=military%20aeronautical%20instrument"
+      "https://www.ebay.com/sch/i.html?_nkw=military%20aviation%20instrument",
+      "https://www.ebay.com/sch/i.html?_nkw=WW2%20gauge",
+      "https://www.ebay.com/sch/i.html?_nkw=military%20gauge",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+swiss+military+watch&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=swiss+military+watch",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20soviet%20watch",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+military+watch+hands&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=military+watch+hands",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+USSR+watch&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=USSR+watch",
+      "https://www.ebay.com/sch/i.html?_nkw=WW2%20watch",
+      "https://www.ebay.com/sch/i.html?_nkw=military%20pocket%20watch",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+military+watch&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=military+watch,"
+      "https://www.ebay.com/sch/i.html?_nkw=WW2%20clock",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20submarine%20clock"
     ],
     GAUGES: [
-      "https://radiationnetwork.com/",
-      "https://www.lndinc.com/",
-      "https://www.gammascout.com/",
-      "https://www.radiationdosimetry.org/"
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20gauge",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20engine%20meter",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20pressure%20gauge",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20flight%20compass",
+      "https://www.ebay.com/sch/i.html?_nkw=bendix%20aircraft",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20maritime%20instruments",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20aeronautical%20instruments",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20submarine%20dial",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20submarine%20gauge"
     ],
     LUMINOUS: [
-      "https://tritium.com/",
-      "https://www.rcn.org.uk/library/subject-guides/radiation/",
-      "https://www.radiochemistry.org/",
-      "https://www.nature.com/subjects/radiation"
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20luminous",
+      "https://www.ebay.com/sch/i.html?_nkw=vintage%20luminous",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+luminous+watch&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=luminous+watch",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+luminous+dials&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=luminous+dials",
+      "https://www.ebay.com/sch/i.html?_nkw=antique+luminous+clocks&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=luminous+clocks"
     ],
     GLASS: [
-      "https://www.radiomuseum.org/",
-      "https://www.vaselineglass.org/",
-      "https://www.cmog.org/article/uranium-glass",
-      "https://www.glassencyclopedia.com/uranianglass.html"
+      "https://www.ebay.com/sch/i.html?_nkw=orange+fiestaware&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=red+fiestaware&_osacat=0",
+      "https://www.ebay.com/sch/i.html?_nkw=burmese+glass&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=orange+fiestaware&_osacat=0",
+      "https://www.ebay.com/sch/i.html?_nkw=vaseline%20glass",
+      "https://www.ebay.com/sch/i.html?_nkw=uranium+slag+glass&_sacat=0&_from=R40&_trksid=p2334524.m570.l1313&_odkw=uranium",
+      "https://www.ebay.com/sch/i.html?_nkw=uranium%20glass"
     ],
     ELEMENTS: [
-      "https://ptable.com/",
-      "https://www.rsc.org/periodic-table",
-      "https://education.jlab.org/itselemental/",
-      "https://www.chemicool.com/"
+      "https://www.ebay.com/sch/i.html?_nkw=uranium",
+      "https://www.ebay.com/sch/i.html?_nkw=radium",
+      "https://www.ebay.com/sch/i.html?_nkw=plutonium",
+      "https://www.ebay.com/sch/i.html?_nkw=polonium",
+      "https://www.ebay.com/sch/i.html?_nkw=thorium",
+      "https://www.ebay.com/sch/i.html?_nkw=nuclear",
+      "https://www.ebay.com/sch/i.html?_nkw=scintillations",
+      "https://www.ebay.com/sch/i.html?_nkw=scintillations",
+      "https://www.ebay.com/sch/i.html?_nkw=cesium"
     ],
     HISTORY: [
-      "https://www.atomicheritage.org/",
-      "https://www.energy.gov/management/office-management/operational-management/history",
-      "https://ahf.nuclearmuseum.org/",
-      "https://www.nrc.gov/docs/ML0037/ML003701934.pdf"
+      "https://www.ebay.com/sch/i.html?_nkw=radioactive%20history",
+      "https://www.ebay.com/sch/i.html?_nkw=radium%20dial%20company",
+      "https://www.ebay.com/sch/i.html?_nkw=united%20states%20radium%20corporation",
+      "https://www.ebay.com/sch/i.html?_nkw=tho-radia",
+      "https://www.ebay.com/sch/i.html?_nkw=radium%20cigarettes",
+      "https://www.ebay.com/sch/i.html?_nkw=radium%20quack%20medicine",
+      "https://www.ebay.com/sch/i.html?_nkw=radium%20condoms",
+      "https://www.ebay.com/sch/i.html?_nkw=radium%20ephemera",
+      "https://www.ebay.com/sch/i.html?_nkw=undark",
+      "https://www.ebay.com/sch/i.html?_nkw=civil%20defense"
     ],
     MISC: [
-      "https://www.radiationanswers.org/",
-      "https://www.radford.edu/~rjscotto/rsch.html",
-      "https://www.nasa.gov/subject/6894/radiation/",
-      "https://www.cdc.gov/nceh/radiation/"
+      "https://www.ebay.com/sch/i.html?_nkw=revigator",
+      "https://www.ebay.com/sch/i.html?_nkw=radium%20microscope%20slide",
+      "https://www.ebay.com/sch/i.html?_nkw=antique%20microscope%20slide",
+      "https://www.ebay.com/sch/i.html?_nkw=geiger%20source",
+      "https://www.ebay.com/sch/i.html?_nkw=radioactive%20demonstration%20kit",
+      "https://www.ebay.com/sch/i.html?_nkw=radioactive",
+      "https://www.ebay.com/sch/i.html?_nkw=radiation",
+      "https://www.ebay.com/sch/i.html?_nkw=bendix%20dosimeter",
+      "https://www.ebay.com/sch/i.html?_nkw=Gilbert%20U-238%20Atomic%20Energy%20Laboratory",
+      "https://www.ebay.com/sch/i.html?_nkw=BESTFIT%20hands"
     ]
   };
   const nuclearButtons = [
