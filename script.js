@@ -62,7 +62,7 @@ window.addEventListener("DOMContentLoaded", () => {
     };
     hideTopicOverlay();
     deepDiveTopicOverlay.classList.add("active");
-    topicOverlayTimer = setTimeout(hideTopicOverlay, 5500);
+    topicOverlayTimer = setTimeout(hideTopicOverlay, 3000);
   }
 
   deepDiveTopicOverlay.addEventListener("click", event => {
