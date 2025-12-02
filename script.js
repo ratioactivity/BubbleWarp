@@ -85,17 +85,98 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const nuclearGrid = nuclearMenuOverlay.querySelector(".nuclear-overlay-grid");
   const nuclearOverlayClose = nuclearMenuOverlay.querySelector(".nuclear-overlay-close");
+  const nuclearCategoryLinks = {
+    MAIN: [
+      "https://en.wikipedia.org/wiki/Nuclear_power",
+      "https://www.world-nuclear.org/",
+      "https://www.nei.org/home",
+      "https://www.iaea.org/"
+    ],
+    LOTS: [
+      "https://www.nrc.gov/",
+      "https://www.epa.gov/radiation",
+      "https://www.energy.gov/ne/nuclear-energy",
+      "https://www.oecd-nea.org/"
+    ],
+    BRANDS: [
+      "https://www.ge.com/power/nuclear",
+      "https://www.westinghousenuclear.com/",
+      "https://www.ramu.com.au/",
+      "https://www.rolls-royce.com/innovation/small-modular-reactors.aspx"
+    ],
+    "MISC DIALS": [
+      "https://www.atomicarchive.com/",
+      "https://hps.org/",
+      "https://www.nist.gov/topics/radiation",
+      "https://www.nrc.gov/reading-rm/doc-collections/fact-sheets/radiological-contaminants.html"
+    ],
+    MILITARY: [
+      "https://www.ctbto.org/",
+      "https://fas.org/issues/nuclear-weapons/",
+      "https://www.icrc.org/en/document/nuclear-weapons",
+      "https://www.un.org/disarmament/wmd/nuclear/"
+    ],
+    GAUGES: [
+      "https://radiationnetwork.com/",
+      "https://www.lndinc.com/",
+      "https://www.gammascout.com/",
+      "https://www.radiationdosimetry.org/"
+    ],
+    LUMINOUS: [
+      "https://tritium.com/",
+      "https://www.rcn.org.uk/library/subject-guides/radiation/",
+      "https://www.radiochemistry.org/",
+      "https://www.nature.com/subjects/radiation"
+    ],
+    GLASS: [
+      "https://www.radiomuseum.org/",
+      "https://www.vaselineglass.org/",
+      "https://www.cmog.org/article/uranium-glass",
+      "https://www.glassencyclopedia.com/uranianglass.html"
+    ],
+    ELEMENTS: [
+      "https://ptable.com/",
+      "https://www.rsc.org/periodic-table",
+      "https://education.jlab.org/itselemental/",
+      "https://www.chemicool.com/"
+    ],
+    HISTORY: [
+      "https://www.atomicheritage.org/",
+      "https://www.energy.gov/management/office-management/operational-management/history",
+      "https://ahf.nuclearmuseum.org/",
+      "https://www.nrc.gov/docs/ML0037/ML003701934.pdf"
+    ],
+    MISC: [
+      "https://www.radiationanswers.org/",
+      "https://www.radford.edu/~rjscotto/rsch.html",
+      "https://www.nasa.gov/subject/6894/radiation/",
+      "https://www.cdc.gov/nceh/radiation/"
+    ]
+  };
   const nuclearButtons = [
     "MAIN", "LOTS", "BRANDS", "MISC DIALS",
     "MILITARY", "GAUGES", "LUMINOUS", "GLASS",
     "ELEMENTS", "HISTORY", "MISC", "Close"
   ];
+  const openNuclearCategory = label => {
+    const categoryLinks = nuclearCategoryLinks[label];
+    if (!categoryLinks || !categoryLinks.length) {
+      return;
+    }
+    categoryLinks.forEach(url => {
+      window.open(url, "_blank");
+    });
+  };
   nuclearButtons.forEach(label => {
     const button = document.createElement("button");
     button.textContent = label;
     if (label === "Close") {
       button.addEventListener("click", () => {
         hideNuclearOverlay();
+      });
+    } else {
+      button.addEventListener("click", () => {
+        openNuclearCategory(label);
       });
     }
     nuclearGrid?.appendChild(button);
