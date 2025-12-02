@@ -72,6 +72,49 @@ window.addEventListener("DOMContentLoaded", () => {
   topicOverlayClose?.addEventListener("click", hideTopicOverlay);
   topicOverlayDismiss?.addEventListener("click", hideTopicOverlay);
 
+  const nuclearMenuOverlay = document.createElement("div");
+  nuclearMenuOverlay.id = "nuclear-menu-overlay";
+  nuclearMenuOverlay.innerHTML = `
+    <div class="nuclear-menu-card">
+      <button class="nuclear-overlay-close" aria-label="Close nuclear menu">✖</button>
+      <p class="nuclear-overlay-title">☢ Select Your Search ☢</p>
+      <div class="nuclear-overlay-grid"></div>
+      <button class="nuclear-overlay-dismiss">Close</button>
+    </div>
+  `;
+  document.body.appendChild(nuclearMenuOverlay);
+
+  const nuclearGrid = nuclearMenuOverlay.querySelector(".nuclear-overlay-grid");
+  const nuclearOverlayClose = nuclearMenuOverlay.querySelector(".nuclear-overlay-close");
+  const nuclearOverlayDismiss = nuclearMenuOverlay.querySelector(".nuclear-overlay-dismiss");
+  const nuclearButtons = [
+    "MAIN", "LOTS", "BRANDS", "MISC DIALS",
+    "MILITARY", "GAUGES", "LUMINOUS", "GLASS",
+    "ELEMENTS", "HISTORY", "MISC", "NUCLEAR"
+  ];
+  nuclearButtons.forEach(label => {
+    const button = document.createElement("button");
+    button.textContent = label;
+    nuclearGrid?.appendChild(button);
+  });
+
+  const hideNuclearOverlay = () => {
+    nuclearMenuOverlay.classList.remove("active");
+  };
+
+  const showNuclearOverlay = () => {
+    nuclearMenuOverlay.classList.add("active");
+  };
+
+  nuclearMenuOverlay.addEventListener("click", event => {
+    if (event.target === nuclearMenuOverlay) {
+      hideNuclearOverlay();
+    }
+  });
+
+  nuclearOverlayClose?.addEventListener("click", hideNuclearOverlay);
+  nuclearOverlayDismiss?.addEventListener("click", hideNuclearOverlay);
+
   const topics = [
     "Uranium glass history",
     "Titanium metallurgy",
@@ -605,6 +648,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (deepDiveMode) {
       showTopicOverlay();
+      return;
+    }
+
+    if (nuclearMode) {
+      showNuclearOverlay();
       return;
     }
 
