@@ -362,3 +362,116 @@ body.deep-dive #logo {
   color: #05344d;
 }
 
+/* ===== Menu Modal ===== */
+#menu-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2500;
+  pointer-events: none;
+}
+
+#menu-modal.open {
+  display: flex;
+  pointer-events: auto;
+}
+
+#menu-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 40, 70, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+#menu-content {
+  position: relative;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 14px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+  width: min(820px, 92vw);
+  max-height: 78vh;
+  overflow: hidden;
+  padding: 18px 18px 12px;
+  font-family: "NTBrickSans", sans-serif;
+  color: #05344d;
+  z-index: 1;
+}
+
+#menu-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 1.1em;
+  cursor: pointer;
+  color: #05344d;
+}
+
+#menu-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 10px 0 14px;
+}
+
+.menu-tab {
+  padding: 10px 12px;
+  background: rgba(0, 80, 130, 0.08);
+  border: 1px solid rgba(0, 80, 130, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #05344d;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.menu-tab.active {
+  background: linear-gradient(135deg, #00b4d8, #8ad4ff);
+  border-color: rgba(0, 80, 130, 0.35);
+  color: #012438;
+  transform: translateY(-1px);
+}
+
+.menu-panel {
+  display: none;
+  position: relative;
+}
+
+.menu-panel.active {
+  display: block;
+}
+
+.menu-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 58vh;
+  overflow-y: auto;
+}
+
+.menu-panel li {
+  padding: 8px 10px;
+  border-bottom: 1px dashed rgba(0, 64, 112, 0.25);
+}
+
+.menu-panel a {
+  color: #05344d;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-panel a::before {
+  content: "➜";
+  color: #00b4d8;
+}
+
+.menu-panel li:last-child {
+  border-bottom: none;
+}
+
