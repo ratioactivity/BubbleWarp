@@ -565,6 +565,19 @@ window.addEventListener("DOMContentLoaded", () => {
   // EXPOSE for console testing
   window.triggerWhaleEvent = triggerWhaleEvent;
 
+  // ---- Deep Dive Toggle (NEW) ----
+let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+
+const deepDiveToggle = document.getElementById("deepdive-toggle");
+if (deepDiveToggle) {
+  deepDiveToggle.checked = deepDiveMode;
+
+  deepDiveToggle.addEventListener("change", () => {
+    deepDiveMode = deepDiveToggle.checked;
+    localStorage.setItem("deepDiveMode", deepDiveMode);
+  });
+}
+
   // ---- Main click ----
   logo?.addEventListener("click", () => {
     clicks++;
