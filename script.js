@@ -760,57 +760,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---- Deep Dive Mode ----
-  const deepDiveToggle = document.getElementById("deepdive-toggle");
-  const deepDiveOverlay = document.getElementById("deepdive-overlay");
-  const deepDiveList = document.getElementById("deepdive-list");
-
-  if (deepDiveToggle && deepDiveOverlay && deepDiveList) {
-
-    deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
-    deepDiveToggle.checked = deepDiveMode;
-    if (deepDiveMode) activateDeepDive(true);
-
-    deepDiveToggle.addEventListener("change", () => {
-      deepDiveMode = deepDiveToggle.checked;
-      localStorage.setItem("deepDiveMode", deepDiveMode);
-      activateDeepDive(deepDiveMode);
-    });
-
-    function activateDeepDive(on) {
-      if (on) {
-        document.body.classList.add("deep-dive");
-        deepDiveOverlay.classList.add("active");
-        renderDeepDive();
-      } else {
-        document.body.classList.remove("deep-dive");
-        deepDiveOverlay.classList.remove("active");
-      }
-    }
-
-    function renderDeepDive() {
-      deepDiveList.innerHTML = "";
-      topics.forEach(topic => {
-        const li = document.createElement("li");
-        li.textContent = topic;
-        const btn = document.createElement("button");
-        btn.textContent = "Search";
-        btn.addEventListener("click", () => {
-          const q = encodeURIComponent(topic);
-          window.open(`https://www.google.com/search?q=${q}`, "_blank");
-        });
-        li.appendChild(btn);
-        deepDiveList.appendChild(li);
-      });
-    }
-  } else {
-    console.warn("Deep Dive UI not found; skipping feature initialization.");
-  }
-
-  console.log("✅ script validated");
-});
-
-
 // ---- Bubble animation ----
 function spawnBubbles(container, count, idle = false) {
   for (let i = 0; i < count; i++) {
