@@ -43,14 +43,9 @@ window.addEventListener("DOMContentLoaded", () => {
   const topicOverlayBody = deepDiveTopicOverlay.querySelector(".topic-overlay-body");
   const topicOverlaySearch = deepDiveTopicOverlay.querySelector(".topic-overlay-search");
   const topicOverlayClose = deepDiveTopicOverlay.querySelector(".topic-overlay-close");
-  let topicOverlayTimer = null;
 
   function hideTopicOverlay() {
     deepDiveTopicOverlay.classList.remove("active");
-    if (topicOverlayTimer) {
-      clearTimeout(topicOverlayTimer);
-      topicOverlayTimer = null;
-    }
   }
 
   function showTopicOverlay() {
@@ -60,9 +55,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const q = encodeURIComponent(topic);
       window.open(`https://www.google.com/search?q=${q}`, "_blank");
     };
-    hideTopicOverlay();
     deepDiveTopicOverlay.classList.add("active");
-    topicOverlayTimer = setTimeout(hideTopicOverlay, 3000);
   }
 
   deepDiveTopicOverlay.addEventListener("click", event => {
