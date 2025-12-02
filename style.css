@@ -52,6 +52,12 @@ body.deep-dive #logo {
   filter: drop-shadow(0 0 12px #00b4d8);
 }
 
+/* ===== Nuclear Mode ===== */
+body.nuclear-mode {
+  background: linear-gradient(180deg, #1aff6d, #00a644);
+  color: #0f2a05;
+}
+
 #logo-container {
   display: flex;
   justify-content: center;
@@ -433,6 +439,75 @@ body.deep-dive #logo {
   background: rgba(255, 170, 68, 0.85);
   border-color: rgba(255, 170, 68, 0.9);
   color: #05344d;
+}
+
+/* ===== Nuclear Mode Overlay ===== */
+#nuclear-menu-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: radial-gradient(circle at center, rgba(34, 88, 32, 0.6), rgba(10, 40, 8, 0.8));
+  z-index: 3300;
+}
+
+#nuclear-menu-overlay.active {
+  display: flex;
+}
+
+.nuclear-menu-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(40, 120, 40, 0.95), rgba(16, 70, 20, 0.95));
+  color: #e8ffe0;
+  padding: 24px 22px 18px;
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+  width: min(520px, 92vw);
+  text-align: center;
+  font-family: "NTBrickSans", sans-serif;
+}
+
+.nuclear-overlay-title {
+  margin: 0 0 14px;
+  font-size: 1.3em;
+  letter-spacing: 0.5px;
+}
+
+.nuclear-overlay-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.nuclear-overlay-grid button {
+  background: #6bff7a;
+  border: none;
+  color: #0f2a05;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.nuclear-overlay-grid button:hover {
+  background: #b7ffbf;
+  transform: translateY(-1px);
+}
+
+.nuclear-overlay-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #e8ffe0;
+  font-size: 1.1em;
+  cursor: pointer;
 }
 
 /* ===== Menu Modal ===== */
