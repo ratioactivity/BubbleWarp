@@ -25,7 +25,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const menuNormalList = document.getElementById("menu-normal-list");
   const menuDeepDiveList = document.getElementById("menu-deepdive-list");
   const menuRadioactiveList = document.getElementById("menu-radioactive-list");
-  let deepDiveMode = false;
+  let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+  let nuclearMode = JSON.parse(localStorage.getItem("nuclearMode") || "false");
   let favBtnResetTimer = null;
   let latestLink = null;
 
@@ -566,17 +567,34 @@ window.addEventListener("DOMContentLoaded", () => {
   window.triggerWhaleEvent = triggerWhaleEvent;
 
   // ---- Deep Dive Toggle (NEW) ----
-let deepDiveMode = JSON.parse(localStorage.getItem("deepDiveMode") || "false");
+  const applyDeepDiveTheme = active => {
+    document.body.classList.toggle("deep-dive", active);
+  };
+  const applyNuclearTheme = active => {
+    document.body.classList.toggle("nuclear-mode", active);
+  };
+  const deepDiveToggle = document.getElementById("deepdive-toggle");
+  const nuclearToggle = document.getElementById("nuclear-toggle");
+  applyDeepDiveTheme(deepDiveMode);
+  applyNuclearTheme(nuclearMode);
+  if (deepDiveToggle) {
+    deepDiveToggle.checked = deepDiveMode;
 
-const deepDiveToggle = document.getElementById("deepdive-toggle");
-if (deepDiveToggle) {
-  deepDiveToggle.checked = deepDiveMode;
+    deepDiveToggle.addEventListener("change", () => {
+      deepDiveMode = deepDiveToggle.checked;
+      localStorage.setItem("deepDiveMode", deepDiveMode);
+      applyDeepDiveTheme(deepDiveMode);
+    });
+  }
+  if (nuclearToggle) {
+    nuclearToggle.checked = nuclearMode;
 
-  deepDiveToggle.addEventListener("change", () => {
-    deepDiveMode = deepDiveToggle.checked;
-    localStorage.setItem("deepDiveMode", deepDiveMode);
-  });
-}
+    nuclearToggle.addEventListener("change", () => {
+      nuclearMode = nuclearToggle.checked;
+      localStorage.setItem("nuclearMode", nuclearMode);
+      applyNuclearTheme(nuclearMode);
+    });
+  }
 
   // ---- Main click ----
   logo?.addEventListener("click", () => {
@@ -787,3 +805,6 @@ function spawnBubbles(container, count, idle = false) {
     setTimeout(() => bubble.remove(), 8000);
   }
 }
+
+  console.log("✅ script validated");
+});

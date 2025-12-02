@@ -52,6 +52,12 @@ body.deep-dive #logo {
   filter: drop-shadow(0 0 12px #00b4d8);
 }
 
+/* ===== Nuclear Mode ===== */
+body.nuclear-mode {
+  background: linear-gradient(180deg, #1aff6d, #00a644);
+  color: #0f2a05;
+}
+
 #logo-container {
   display: flex;
   justify-content: center;
